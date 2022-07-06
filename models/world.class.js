@@ -6,6 +6,9 @@ class World {
         new Chiken(),
         new Chiken()
     ];
+    clouds = [
+        new Cloud()
+    ];
 
     canvas;
     ctx;
@@ -24,7 +27,9 @@ class World {
             this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
         });
 
-        // this.ctx.drawImage(this.cloud.img, this.cloud.x, this.cloud.y, this.cloud.width, this.cloud.height);
+        this.clouds.forEach(cloud => {
+            this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
+        });
 
         let self = this;
         requestAnimationFrame(function () {
