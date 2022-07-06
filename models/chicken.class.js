@@ -11,15 +11,17 @@ class Chiken extends MovableObject {
 
     constructor() {
         super().loadImage('./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        this.loadImages(this.ImagesWalking);
 
         this.x = 200 + Math.random() * 500; // 200-700
-
-        this.loadImages(this.ImagesWalking);
+        this.speed = 0.2 + Math.random() * 0.5;
 
         this.animate();
     }
 
     animate() {
+        this.moveLeft();
+
         setInterval(() => {
             let i = this.currentImage % this.ImagesWalking.length; // modulo - schleiffe der länge
             let path = this.ImagesWalking[i];
