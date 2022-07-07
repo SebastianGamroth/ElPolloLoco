@@ -41,11 +41,13 @@ class Character extends MovableObject {
             this.walkingSound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
                 this.moveRight();
+                this.otherDirection = false;
                 this.walkingSound.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > -600) {
                 this.moveLeft();
+                this.otherDirection = true;
                 this.walkingSound.play();
             }
 
