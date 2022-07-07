@@ -12,12 +12,25 @@ class Character extends MovableObject {
         './img/2_character_pepe/2_walk/W-26.png'
     ];
 
+    ImagesJumping = [
+        './img/2_character_pepe/3_jump/J-31.png',
+        './img/2_character_pepe/3_jump/J-32.png',
+        './img/2_character_pepe/3_jump/J-33.png',
+        './img/2_character_pepe/3_jump/J-34.png',
+        './img/2_character_pepe/3_jump/J-35.png',
+        './img/2_character_pepe/3_jump/J-36.png',
+        './img/2_character_pepe/3_jump/J-37.png',
+        './img/2_character_pepe/3_jump/J-38.png',
+        './img/2_character_pepe/3_jump/J-39.png'
+    ];
+
     world;
     walkingSound = new Audio('./audio/running.mp3');
 
     constructor() {
-        super().loadImage('./img/2_character_pepe/2_walk/W-21.png');
+        super().loadImage(this.ImagesWalking[0]);
         this.loadImages(this.ImagesWalking);
+        this.loadImages(this.ImagesJumping);
         this.applyGravity();
         this.animate();
     }
@@ -32,7 +45,7 @@ class Character extends MovableObject {
                 this.walkingSound.play();
             }
 
-            if (this.world.keyboard.LEFT && this.x > 0) {
+            if (this.world.keyboard.LEFT && this.x > -600) {
                 this.x -= this.speed;
                 this.otherDirection = true;
                 this.walkingSound.play();
@@ -42,8 +55,12 @@ class Character extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                this.playAnimation(this.ImagesWalking);
+            if (this.isAboveGround()) {
+                this.playAnimation(this.ImagesJumping);
+            } else {
+                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                    this.playAnimation(this.ImagesWalking);
+                }
             }
         }, 50);
     }
