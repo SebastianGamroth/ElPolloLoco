@@ -22,6 +22,13 @@ class MovableObject {
         });
     }
 
+    playAnimation(images) {
+        let i = this.currentImage % this.ImagesWalking.length; // modulo - schleiffe der länge
+        let path = images[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+    }
+
     moveRight() {
         console.log('MOVE R');
     }

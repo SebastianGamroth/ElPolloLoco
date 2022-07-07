@@ -2,7 +2,8 @@ const level1 = new Level(
     [
         new Chiken(),
         new Chiken(),
-        new Chiken()
+        new Chiken(),
+        new EndBoss()
     ],
     [
         new Cloud()

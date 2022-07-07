@@ -43,10 +43,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                let i = this.currentImage % this.ImagesWalking.length; // modulo - schleiffe der länge
-                let path = this.ImagesWalking[i];
-                this.img = this.imageCache[path];
-                this.currentImage++;
+                this.playAnimation(this.ImagesWalking);
             }
         }, 50);
     }

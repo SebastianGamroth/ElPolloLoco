@@ -23,10 +23,7 @@ class Chiken extends MovableObject {
         this.moveLeft();
 
         setInterval(() => {
-            let i = this.currentImage % this.ImagesWalking.length; // modulo - schleiffe der länge
-            let path = this.ImagesWalking[i];
-            this.img = this.imageCache[path];
-            this.currentImage++;
+            this.playAnimation(this.ImagesWalking);
         }, 200);
     }
 
