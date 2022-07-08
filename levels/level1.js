@@ -35,7 +35,18 @@ let level1;
             new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 719 * 2)
         ],
         [
-            new Coins(400,350)
+            new Coins(0,100),
+            new Coins(300,100),
+            new Coins(400,100),
+            new Coins(500,100),
+            new Coins(600,100)
+        ],
+        [
+            new Bottle(0,380),
+            new Bottle(300,380),
+            new Bottle(400,380),
+            new Bottle(500,380),
+            new Bottle(600,380)
         ]
     );
 

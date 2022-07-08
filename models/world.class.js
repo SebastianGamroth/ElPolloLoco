@@ -10,7 +10,6 @@ class World {
     statusBarBottle = new StatusBarBottle();
     statusBarHealth = new StatusBarHealth();
     statusBarCoins = new StatusBarCoins();
-    coins = new Coins();
     throwableObject = [];
 
     constructor(canvas, keyboard) {
@@ -23,7 +22,7 @@ class World {
         this.run();
         // initLevel();
         this.checkCollisionsCoins();
-
+        this.checkCollisionsBottle();
     };
 
     setWorld() {
@@ -34,8 +33,8 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkCollisionsCoins();
+            this.checkCollisionsBottle();
             this.checkThrowableObject();
-
         }, 200);
     }
 
@@ -53,22 +52,30 @@ class World {
                 // this.character.hit();
                 // this.statusBarHealth.setPercentage(this.character.energy);
             }
-
-
         });
         // }
     }
 
     checkCollisionsCoins() {
-        // if (this.keyboard.startGame) {
-        this.level.coins.forEach((enemy) => {
+        this.level.coins.forEach((enemy, index) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hitCoin();
-                // this.statusBarHealth.setPercentage(this.character.energy);
-                // this.statusBarCoins.setPercentage(this.character.energy);
+                this.statusBarCoins.setPercentage(this.character.coin);
+
+                this.level.coins.splice(index, 1);
             }
         });
-        // }
+    }
+
+    checkCollisionsBottle() {
+        this.level.bottle.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hitBottle();
+                this.statusBarBottle.setPercentage(this.character.bottle);
+
+                this.level.bottle.splice(index, 1);
+            }
+        });
     }
 
     // start = false;
@@ -89,7 +96,8 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
 
-        this.addToMap(this.coins);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottle);
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------
