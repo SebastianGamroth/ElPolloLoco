@@ -17,11 +17,12 @@ class DrawableObject {
     }
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chiken || this instanceof Coins || this instanceof Bottle) {
+
+        if (this instanceof Character || this instanceof Chiken || this instanceof Coins || this instanceof Bottle || this instanceof EndBoss) {
             ctx.beginPath();
-            ctx.lineWidth = '2';
+            ctx.lineWidth = '1';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.rect(this.x + this.offsetX, this.y + this.offsetY, this.width - this.offsetW, this.height - this.offsetH);
             ctx.stroke();
         }
     }

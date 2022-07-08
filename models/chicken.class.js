@@ -1,4 +1,10 @@
 class Chiken extends MovableObject {
+
+    offsetX = 5;
+    offsetY = 8;
+    offsetW = 10;
+    offsetH = 20;
+
     height = 60;
     width = 61;
     y = 370;

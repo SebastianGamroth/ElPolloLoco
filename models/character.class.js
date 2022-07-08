@@ -3,6 +3,11 @@ class Character extends MovableObject {
     y = 55;
     speed = 10;
 
+    offsetX = 20;
+    offsetY = 110;
+    offsetW = 50;
+    offsetH = 120;
+
     ImagesWalking = [
         './img/2_character_pepe/2_walk/W-21.png',
         './img/2_character_pepe/2_walk/W-22.png',
@@ -79,13 +84,13 @@ class Character extends MovableObject {
 
         setInterval(() => {
             if (this.isDead()) {
-                console.log('ded')
                 // this.playAnimation(this.ImagesDead);
             } else if (this.isHurt()) {
                 this.playAnimation(this.ImagesHurt);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.ImagesJumping);
-            } else {
+            } 
+            else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     this.playAnimation(this.ImagesWalking);
                 }

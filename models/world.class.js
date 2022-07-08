@@ -18,7 +18,7 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.checkCollisionsChicken();
         this.run();
         // initLevel();
         this.checkCollisionsCoins();
@@ -31,7 +31,7 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionsChicken();
             this.checkCollisionsCoins();
             this.checkCollisionsBottle();
             this.checkThrowableObject();
@@ -39,18 +39,24 @@ class World {
     }
 
     checkThrowableObject() {
-        if (this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-            this.throwableObject.push(bottle);
+        if (world.character.bottle > 0) {
+            if (this.keyboard.D) {
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                this.throwableObject.push(bottle);
+
+                world.character.bottle -= 20;
+                this.statusBarBottle.setPercentage(this.character.bottle);
+            }
         }
+
     }
 
-    checkCollisions() {
+    checkCollisionsChicken() {
         // if (this.keyboard.startGame) {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                // this.character.hit();
-                // this.statusBarHealth.setPercentage(this.character.energy);
+                this.character.hit();
+                this.statusBarHealth.setPercentage(this.character.energy);
             }
         });
         // }
@@ -133,7 +139,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

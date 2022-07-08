@@ -1,4 +1,9 @@
 class MovableObject extends DrawableObject {
+    offsetX = 0;
+    offsetY = 0;
+    offsetW = 0;
+    offsetH = 0;
+
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -26,11 +31,23 @@ class MovableObject extends DrawableObject {
     };
 
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
+
+        // console.log(`
+        // offsetX ${mo.x}
+        //    xw ${(this.x + this.offsetX) + (this.width - this.offsetW)} x ${mo.x + mo.offsetX} is ${(this.x + this.offsetX) + (this.width - this.offsetW) > mo.x + mo.offsetX}
+        //    yh ${(this.y + this.offsetY) + (this.height - this.offsetH)} y ${mo.y + mo.offsetY} is ${(this.y + this.offsetY) + (this.height - this.offsetH) > mo.y + mo.offsetY}
+        //    x ${this.x + this.offsetX} xw ${(mo.x + mo.offsetX) + (mo.width - mo.offsetW)} is ${this.x + this.offsetX < (mo.x + mo.offsetX) + (mo.width - mo.offsetW)}
+        //    y ${this.y + this.offsetY} yh ${(mo.y + mo.offsetY) + (mo.height - mo.offsetH)} is ${this.y + this.offsetY < (mo.y + mo.offsetY) + (mo.height - mo.offsetH)}
+        //     `
+        // )
+
+        return (this.x + this.offsetX) + (this.width - this.offsetW) > mo.x + mo.offsetX &&
+            (this.y + this.offsetY) + (this.height - this.offsetH) > mo.y + mo.offsetY &&
+            this.x + this.offsetX < (mo.x + mo.offsetX) + (mo.width - mo.offsetW) &&
+            this.y + this.offsetY < (mo.y + mo.offsetY) + (mo.height - mo.offsetH);
+
     }
+
 
     hit() {
         this.energy -= 20;
