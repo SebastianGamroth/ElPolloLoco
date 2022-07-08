@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     energy = 100;
+    coin= 0;
     lastHit = 0;
 
     applyGravity() {
@@ -31,12 +32,22 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 5;
+        this.energy -= 10;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+
+    hitCoin() {
+        this.coin += 1;
+        console.log(this.coin)
+        // if (this.coin < 10) {
+        //     this.coin = 0;
+        // } else {
+        //     this.lastHit = new Date().getTime();
+        // }
     }
 
     isHurt() {

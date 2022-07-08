@@ -2,12 +2,21 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
+
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
 
-    console.log('My Character ', world.character);
+    // console.log('My Character ', world.character);
 }
+
+// window.addEventListener("click", onClick);
+
+// function onClick() {
+//     keyboard.startGame = true;
+
+// }
+
 
 window.addEventListener('keydown', (e) => {
     if (e.keyCode == 39) {
