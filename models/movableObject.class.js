@@ -12,6 +12,7 @@ class MovableObject extends DrawableObject {
     coin = 0;
     bottle = 0;
     lastHit = 0;
+    damage = 100;
 
     applyGravity() {
         setInterval(() => {
@@ -64,6 +65,11 @@ class MovableObject extends DrawableObject {
 
     hitBottle() {
         this.bottle += 20;
+    }
+
+
+    damageEnemy() {
+        this.damage -= 20;
     }
 
     isHurt() {

@@ -11,6 +11,7 @@ class World {
     statusBarHealth = new StatusBarHealth();
     statusBarCoins = new StatusBarCoins();
     throwableObject = [];
+    newCloud = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -23,7 +24,19 @@ class World {
         // initLevel();
         this.checkCollisionsCoins();
         this.checkCollisionsBottle();
+        // this.checkCollisionsEndBoss();
+        // this.newClouds();
+
     };
+
+    newClouds() {
+        setInterval(() => {
+            console.log('new cloud')
+            let cloud = new Cloud(700);
+            this.newCloud.push(cloud);
+
+        }, 4000);
+    }
 
     setWorld() {
         this.character.world = this;
@@ -35,16 +48,17 @@ class World {
             this.checkCollisionsCoins();
             this.checkCollisionsBottle();
             this.checkThrowableObject();
+            // this.checkCollisionsEndBoss();
         }, 200);
     }
 
     checkThrowableObject() {
-        if (world.character.bottle > 0) {
+        if (this.character.bottle > 0) {
             if (this.keyboard.D) {
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
                 this.throwableObject.push(bottle);
 
-                world.character.bottle -= 20;
+                this.character.bottle -= 20;
                 this.statusBarBottle.setPercentage(this.character.bottle);
             }
         }
@@ -61,6 +75,19 @@ class World {
         });
         // }
     }
+
+    // checkCollisionsEndBoss() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         console.log(this.throwableObject);
+
+    //         // if (this.throwableObject.isColliding(enemy)) {
+    //         //     // this.level.enemies.damageEnemy();
+    //         //     // this.statusBarCoins.setPercentage(this.character.coin);
+
+    //         //     // this.level.coins.splice(index, 1);
+    //         // }
+    //     });
+    // }
 
     checkCollisionsCoins() {
         this.level.coins.forEach((enemy, index) => {
@@ -104,6 +131,8 @@ class World {
 
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
+
+        this.addObjectsToMap(this.newCloud)
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------
