@@ -74,6 +74,7 @@ class MovableObject extends DrawableObject {
         console.log('hitChiken')
     }
 
+
     hitBoss() {
         this.energyBoss -= 20;
 
@@ -83,7 +84,11 @@ class MovableObject extends DrawableObject {
     isHurtBoss() {
         let timepassed = new Date().getTime() - this.lastHitBoss;
         timepassed = timepassed / 1000;
-        return timepassed < 1.4;
+        return timepassed < 0.8;
+    }
+
+    isBossDead() {
+        return this.energyBoss == 0;
     }
 
     damageEnemy() {
