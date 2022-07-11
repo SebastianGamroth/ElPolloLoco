@@ -29,6 +29,7 @@ class Chiken extends MovableObject {
         super().loadImage(this.ImagesWalking[0]);
         this.loadImages(this.ImagesWalking);
         this.loadImages(this.ImagesBaby);
+        this.loadImages(this.ImagesDead);
 
         this.x = 400 + Math.random() * 500; // 200-700
         this.speed = 0.4 + Math.random() * 0.5;
@@ -47,7 +48,7 @@ class Chiken extends MovableObject {
 
             if (this.chikenDead()) {
                 console.log('dead')
-                // this.playAnimation(this.ImagesDead);
+                this.playAnimation(this.ImagesDead);
             } else if (!this.chikenDead()) {
                 this.playAnimation(this.ImagesWalking);
             }

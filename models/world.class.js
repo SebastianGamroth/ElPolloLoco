@@ -45,6 +45,7 @@ class World {
             this.checkCollisionsChickenEnd();
             this.checkCollisionsChickenBottle();
             this.checkCollisionsCloudsEnd()
+            this.checkCollisionsBottleSplash();
 
             this.newClouds();
         }, 200);
@@ -66,29 +67,29 @@ class World {
         });
     }
 
-    chikenArray = [];
+    // chikenArray = [];
 
-    enemiesAnimate() {
-        setInterval(() => {
-            let chiken = new Chiken();
-            this.chikenArray.push(chiken);
+    // enemiesAnimate() {
+    //     setInterval(() => {
+    //         let chiken = new Chiken();
+    //         this.chikenArray.push(chiken);
 
-            chiken.animate();
+    //         chiken.animate();
 
-            // this.chikenArray.forEach((enemy) => {
-            //     if (enemy instanceof Chiken) {
-            //         enemy.animate();
-            //     }
-            // });
+    //         // this.chikenArray.forEach((enemy) => {
+    //         //     if (enemy instanceof Chiken) {
+    //         //         enemy.animate();
+    //         //     }
+    //         // });
 
 
-        }, 4000);
-    }
+    //     }, 4000);
+    // }
 
     checkCollisionsChickenEnd() {
-        this.chikenArray.forEach((enemy, index) => {
-            if (this.character.isColliding(enemy) || enemy.x < 300) {
-                this.chikenArray.splice(index, 1);
+        this.level.enemies.forEach((enemy, index) => {
+            if (enemy.x < 100) {
+                this.level.enemies.splice(index, 1);
             }
         });
     }
@@ -102,7 +103,7 @@ class World {
 
                         enemy.hitChiken();
 
-                        this.level.enemies.splice(index, 1);
+                        // this.level.enemies.splice(index, 1);
                         this.throwableObject.splice(id, 1);
                     }
                 }
@@ -110,6 +111,22 @@ class World {
         });
     }
 
+    checkCollisionsEndBoss() {
+        this.throwableObject.forEach((bottle, id) => {
+
+            let boss = this.level.enemieBoss[0];
+
+            if (this.throwableObject.length > 0) {
+                if (bottle.isColliding(boss)) {
+
+                    boss.hitBoss();
+                    this.statusBarBoss.setPercentage(boss.energyBoss);
+
+                    this.throwableObject.splice(id, 1);
+                }
+            }
+        });
+    }
 
     // checkCollisionsBottleGround() {
     //     this.throwableObject.forEach((bottle, id) => {
@@ -141,8 +158,19 @@ class World {
         }
     }
 
+
+    checkCollisionsBottleSplash(){
+        this.throwableObject.forEach(bottle => {
+            if(bottle.y > 400){
+                // console.log('155');
+                // isBottleSplash
+            }
+        });
+    }
+
+
     checkCollisionsChicken() {
-        this.chikenArray.forEach((enemy) => {
+        this.level.enemies.forEach((enemy) => {
             if (enemy.isColliding(this.character)) {
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy);
@@ -161,22 +189,7 @@ class World {
     }
 
 
-    checkCollisionsEndBoss() {
-        this.throwableObject.forEach((bottle, id) => {
 
-            let boss = this.level.enemieBoss[0];
-
-            if (this.throwableObject.length > 0) {
-                if (bottle.isColliding(boss)) {
-
-                    boss.hitBoss();
-                    this.statusBarBoss.setPercentage(boss.energyBoss);
-
-                    this.throwableObject.splice(id, 1);
-                }
-            }
-        });
-    }
 
 
     checkCollisionsCoins() {
@@ -201,6 +214,8 @@ class World {
         });
     }
 
+
+
     // start = false;
 
     draw() {
@@ -222,15 +237,10 @@ class World {
         this.addObjectsToMap(this.level.enemieBoss);
         this.addToMap(this.statusBarBoss);
 
-        // this.addToMap(this.boss);   
-        // this.addToMap(this.level.enemieBoss[0]);
-
-
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
 
         this.addObjectsToMap(this.newCloud);
-        this.addObjectsToMap(this.chikenArray);
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------

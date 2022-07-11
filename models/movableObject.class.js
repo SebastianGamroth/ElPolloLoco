@@ -61,6 +61,11 @@ class MovableObject extends DrawableObject {
         }
     }
 
+    isBottleSplash(){
+        let x;
+        // console.log('empty')
+    }
+
     hitCoin() {
         this.coin += 20;
     }
@@ -69,9 +74,13 @@ class MovableObject extends DrawableObject {
         this.bottle += 20;
     }
 
+    
     hitChiken() {
         this.energyChiken -= 20;
-        console.log('hitChiken')
+    }
+    
+    chikenDead() {
+        return this.energyChiken == 0;
     }
 
 
@@ -105,9 +114,7 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
-    chikenDead() {
-        return this.energyChiken == 0;
-    }
+
 
     playAnimation(images) {
         let i = this.currentImage % images.length; // modulo - schleiffe der länge

@@ -36,9 +36,11 @@ class ThrowableObject extends MovableObject {
         }, 25);
 
         setInterval(() => {
-            // if (this.isDead()) {
+            if (this.isBottleSplash()) {
+                this.playAnimation(this.ImagesSplash);
+            } else {
                 this.playAnimation(this.ImagesRotation);
-            // }
+            }
         }, 50);
     }
 }
