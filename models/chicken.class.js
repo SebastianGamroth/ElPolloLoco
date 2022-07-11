@@ -30,11 +30,13 @@ class Chiken extends MovableObject {
         this.loadImages(this.ImagesWalking);
         this.loadImages(this.ImagesBaby);
 
-        this.x = 200 + Math.random() * 500; // 200-700
-        this.speed = 0.2 + Math.random() * 0.5;
+        this.x = 400 + Math.random() * 500; // 200-700
+        this.speed = 0.4 + Math.random() * 0.5;
 
         this.animate();
     };
+
+    conter = 1;
 
     animate() {
         setInterval(() => {
@@ -42,17 +44,35 @@ class Chiken extends MovableObject {
         }, 1000 / 60);
 
         setInterval(() => {
-            this.playAnimation(this.ImagesBaby);
-        }, 200);
-    
-        if(this.x<100){
-            console.log('ok')
-        }
 
-        // setInterval(() => {
-        //     this.playAnimation(this.ImagesBaby);
-        // }, 2000);
-    
+            if (this.chikenDead()) {
+                console.log('dead')
+                // this.playAnimation(this.ImagesDead);
+            } else if (!this.chikenDead()) {
+                this.playAnimation(this.ImagesWalking);
+            }
+
+
+        }, 200);
     };
+
+
+    // startMoveTo() {
+    //     this.moveToInterval = setInterval(this.moveTo.bind(this), 60); // 60
+    // }
+
+    // moveTo() {
+        
+
+    //     if (!this.chikenDead()) {
+    //         this.speed = 1;
+    //         this.moveLeft();
+    //         this.playAnimation(this.ImagesBaby);
+    //     }
+
+    //     if (this.chikenDead()) {
+    //         this.playAnimation(this.ImagesDead);
+    //     }
+    // }
 
 }

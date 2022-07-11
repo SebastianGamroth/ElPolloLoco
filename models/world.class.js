@@ -2,6 +2,7 @@ class World {
 
     startScreen = new StartScreen();
     character = new Character();
+    // boss = new EndBoss();
     level = level1;
     canvas;
     ctx;
@@ -22,21 +23,12 @@ class World {
         this.checkCollisionsChicken();
         this.run();
         // initLevel();
-        this.checkCollisionsCoins();
-        this.checkCollisionsBottle();
+        // this.checkCollisionsCoins();
+        // this.checkCollisionsBottle();
         // this.checkCollisionsEndBoss();
-        // this.newClouds();
 
+        // this.enemiesAnimate()
     };
-
-    newClouds() {
-        setInterval(() => {
-            console.log('new cloud')
-            let cloud = new Cloud(700);
-            this.newCloud.push(cloud);
-
-        }, 4000);
-    }
 
     setWorld() {
         this.character.world = this;
@@ -48,13 +40,101 @@ class World {
             this.checkCollisionsCoins();
             this.checkCollisionsBottle();
             this.checkThrowableObject();
-            // this.checkCollisionsEndBoss();
+            this.checkCollisionsEndBoss();
+            this.checkCollisionsChickenEnd();
+            this.checkCollisionsChickenBottle();
+            this.checkCollisionsCloudsEnd()
+
+            this.newClouds();
         }, 200);
     }
+
+    newClouds() {
+        if (this.level.clouds.length == 7) {
+            let cloud = new Cloud(2800);
+            this.level.clouds.push(cloud);
+        }
+    }
+
+    checkCollisionsCloudsEnd() {
+        this.level.clouds.forEach((enemy, index) => {
+            if (enemy.x < -1200) {
+                // enemy.splice(index, 1);
+                this.level.clouds.splice(index, 1);
+            }
+        });
+    }
+
+    chikenArray = [];
+
+    enemiesAnimate() {
+        setInterval(() => {
+            let chiken = new Chiken();
+            this.chikenArray.push(chiken);
+
+            chiken.animate();
+
+            // this.chikenArray.forEach((enemy) => {
+            //     if (enemy instanceof Chiken) {
+            //         enemy.animate();
+            //     }
+            // });
+
+
+        }, 4000);
+    }
+
+    checkCollisionsChickenEnd() {
+        this.chikenArray.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy) || enemy.x < 300) {
+                this.chikenArray.splice(index, 1);
+            }
+        });
+    }
+
+    checkCollisionsChickenBottle() {
+        this.throwableObject.forEach((bottle, id) => {
+            this.chikenArray.forEach((enemy, index) => {
+
+                if (this.throwableObject.length > 0) {
+                    if (bottle.isColliding(enemy)) {
+
+                        enemy.hitChiken();
+                        // enemy.hitChiken();
+                        // this.chikenArray[index].hitChiken();
+                        // this.character.hitChiken();
+
+                        // this.chikenArray.splice(index, 1);
+                        this.throwableObject.splice(id, 1);
+                    }
+                }
+
+            });
+        });
+    }
+
+
+    // checkCollisionsBottleGround() {
+    //     this.throwableObject.forEach((bottle, id) => {
+    //         this.chikenArray.forEach((enemy, index) => {
+
+    //             if (this.throwableObject.length > 0) {
+    //                 if (bottle.isColliding(enemy)) {
+
+    //                     this.chikenArray.splice(index, 1);
+    //                     this.throwableObject.splice(id, 1);
+    //                 }
+    //             }
+
+    //         });
+    //     });
+    // }
+
 
     checkThrowableObject() {
         if (this.character.bottle > 0) {
             if (this.keyboard.D) {
+
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
                 this.throwableObject.push(bottle);
 
@@ -62,32 +142,50 @@ class World {
                 this.statusBarBottle.setPercentage(this.character.bottle);
             }
         }
-
     }
 
     checkCollisionsChicken() {
-        // if (this.keyboard.startGame) {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+        this.chikenArray.forEach((enemy) => {
+            if (enemy.isColliding(this.character)) {
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy);
             }
         });
-        // }
+
+        // // if (this.keyboard.startGame) {
+        // this.level.enemies.forEach((enemy) => {
+        //     if (this.character.isColliding(enemy)) {
+
+        //         this.character.hit();
+        //         this.statusBarHealth.setPercentage(this.character.energy);
+        //     }
+        // });
+        // // }
     }
 
-    // checkCollisionsEndBoss() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         console.log(this.throwableObject);
+    checkCollisionsEndBoss() {
+        this.throwableObject.forEach((bottle, id) => {
 
-    //         // if (this.throwableObject.isColliding(enemy)) {
-    //         //     // this.level.enemies.damageEnemy();
-    //         //     // this.statusBarCoins.setPercentage(this.character.coin);
+            let boss = this.boss;
+            let bossLevel = this.level.enemieBoss[0];
 
-    //         //     // this.level.coins.splice(index, 1);
-    //         // }
-    //     });
-    // }
+            if (this.throwableObject.length > 0) {
+                if (bottle.isColliding(bossLevel)) {
+
+                    this.level.enemieBoss[0].hitBoss();
+                    // bossLevel.hitBoss();
+                    // boss.hitBoss();
+
+                    // this.chikenArray.splice(index, 1);
+                    this.throwableObject.splice(id, 1);
+                }
+            }
+
+        });
+    }
+
+
+
 
     checkCollisionsCoins() {
         this.level.coins.forEach((enemy, index) => {
@@ -129,10 +227,16 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
 
+        this.addObjectsToMap(this.level.enemieBoss);
+        // this.addToMap(this.boss);   
+        // this.addToMap(this.level.enemieBoss[0]);
+
+
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
 
-        this.addObjectsToMap(this.newCloud)
+        this.addObjectsToMap(this.newCloud);
+        this.addObjectsToMap(this.chikenArray);
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------

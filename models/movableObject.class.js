@@ -6,12 +6,15 @@ class MovableObject extends DrawableObject {
 
     speed = 0.15;
     otherDirection = false;
-    speedY = 0;
+    speedY = 0.1;
     acceleration = 2.5;
     energy = 100;
+    energyChiken = 20;
+    energyBoss = 100;
     coin = 0;
     bottle = 0;
     lastHit = 0;
+    lastHitBoss = 0;
     damage = 100;
 
     applyGravity() {
@@ -49,7 +52,6 @@ class MovableObject extends DrawableObject {
 
     }
 
-
     hit() {
         this.energy -= 20;
         if (this.energy < 0) {
@@ -67,6 +69,22 @@ class MovableObject extends DrawableObject {
         this.bottle += 20;
     }
 
+    hitChiken() {
+        this.energyChiken -= 20;
+        console.log('hitChiken')
+    }
+
+    hitBoss() {
+        this.energyBoss -= 20;
+
+        this.lastHitBoss = new Date().getTime();
+    }
+
+    isHurtBoss() {
+        let timepassed = new Date().getTime() - this.lastHitBoss;
+        timepassed = timepassed / 1000;
+        return timepassed < 1.4;
+    }
 
     damageEnemy() {
         this.damage -= 20;
@@ -80,6 +98,10 @@ class MovableObject extends DrawableObject {
 
     isDead() {
         return this.energy == 0;
+    }
+
+    chikenDead() {
+        return this.energyChiken == 0;
     }
 
     playAnimation(images) {

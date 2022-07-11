@@ -5,13 +5,28 @@ let level1;
 level1 = new Level(
     [
         new Fence('./img/5_background/fence.png', -650),
+        // new Chiken(),
+        // new Chiken(),
+        // new Chiken(),
+        // new Chiken(),
+        // new Chiken(),
+        // new Chiken(),
         new Chiken(),
         new Chiken(),
-        new Chiken(),
+        new Chiken()
+    ],
+    [
         new EndBoss()
     ],
     [
-        new Cloud()
+        new Cloud(-700),
+        new Cloud(-200),
+        new Cloud(300),
+        new Cloud(800),
+        new Cloud(1300),
+        new Cloud(1800),
+        new Cloud(2300),
+        new Cloud(2800)
     ],
     [
         new BackgroundObject('./img/5_background/layers/air.png', -719),

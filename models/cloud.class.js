@@ -10,12 +10,13 @@ class Cloud extends MovableObject {
     constructor(x) {
         super().loadImage(this.Images[0]);
 
-        if (!x) { x = 400 }
-        else {
-            this.x = x;
-            this.playAnimation(this.Images[0]);
-        }
-
+        // if (!x) { x = 400; console.log('400')}
+        // else {
+        //     console.log(x)
+        //     this.x = x;
+        //     this.playAnimation(this.Images[0]);
+        // }
+        this.x = x;
 
         // this.x = Math.random() * 500;
         this.animate();
@@ -31,5 +32,6 @@ class Cloud extends MovableObject {
         setInterval(() => {
             this.x -= 0.15;
         }, 1000 / 60);
+
     }
 }
