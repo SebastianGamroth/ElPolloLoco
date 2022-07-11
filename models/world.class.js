@@ -95,21 +95,17 @@ class World {
 
     checkCollisionsChickenBottle() {
         this.throwableObject.forEach((bottle, id) => {
-            this.chikenArray.forEach((enemy, index) => {
+            this.level.enemies.forEach((enemy, index) => {
 
                 if (this.throwableObject.length > 0) {
                     if (bottle.isColliding(enemy)) {
 
                         enemy.hitChiken();
-                        // enemy.hitChiken();
-                        // this.chikenArray[index].hitChiken();
-                        // this.character.hitChiken();
 
-                        // this.chikenArray.splice(index, 1);
+                        this.level.enemies.splice(index, 1);
                         this.throwableObject.splice(id, 1);
                     }
                 }
-
             });
         });
     }
@@ -164,6 +160,7 @@ class World {
         // // }
     }
 
+
     checkCollisionsEndBoss() {
         this.throwableObject.forEach((bottle, id) => {
 
@@ -175,15 +172,11 @@ class World {
                     boss.hitBoss();
                     this.statusBarBoss.setPercentage(boss.energyBoss);
 
-                    // this.chikenArray.splice(index, 1);
                     this.throwableObject.splice(id, 1);
                 }
             }
-
         });
     }
-
-
 
 
     checkCollisionsCoins() {
