@@ -37,43 +37,45 @@ class Chiken extends MovableObject {
         this.animate();
     };
 
-    conter = 1;
+    // animate() {
+    //     setInterval(() => {
+    //         this.moveLeft();
+    //     }, 1000 / 60);
+
+    //     setInterval(() => {
+
+    //         if (this.chikenDead()) {
+    //             this.playAnimation(this.ImagesDead);
+    //         } else if (!this.chikenDead()) {
+    //             this.playAnimation(this.ImagesWalking);
+    //         }
+    //     }, 200);
+    // };
+
 
     animate() {
-        setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
+        this.startMoveTo();
 
         setInterval(() => {
-
             if (this.chikenDead()) {
-                console.log('dead')
                 this.playAnimation(this.ImagesDead);
             } else if (!this.chikenDead()) {
                 this.playAnimation(this.ImagesWalking);
             }
-
-
         }, 200);
-    };
 
-
-    // startMoveTo() {
-    //     this.moveToInterval = setInterval(this.moveTo.bind(this), 60); // 60
-    // }
-
-    // moveTo() {
-        
-
-    //     if (!this.chikenDead()) {
-    //         this.speed = 1;
-    //         this.moveLeft();
-    //         this.playAnimation(this.ImagesBaby);
-    //     }
-
-    //     if (this.chikenDead()) {
-    //         this.playAnimation(this.ImagesDead);
-    //     }
-    // }
+    }
+    startMoveTo() {
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 1000 / 60);
+    }
+    stopAnimate() {
+        this.stopMoveTo();
+    }
+    stopMoveTo() {
+        clearInterval(this.moveToInterval);
+    }
+    moveTo() {
+        this.moveLeft();
+    }
 
 }

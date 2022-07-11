@@ -24,16 +24,38 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 60;
         this.width = 50;
-        this.throw();
+        // this.throw();
+
+        this.animate();
     }
 
-    throw() {
+    // throw() {
+    //     this.speedY = 25;
+    //     this.applyGravity();
+
+    //     setInterval(() => {
+    //         this.x += 8;
+    //     }, 25);
+
+    //     setInterval(() => {
+    //         if (this.isBottleSplash()) {
+    //             this.playAnimation(this.ImagesSplash);
+    //         } else {
+    //             this.playAnimation(this.ImagesRotation);
+    //         }
+    //     }, 50);
+    // }
+
+
+    animate() {
+        this.startMoveTo();
+
         this.speedY = 25;
         this.applyGravity();
 
-        setInterval(() => {
-            this.x += 8;
-        }, 25);
+        // setInterval(() => {
+        //     this.x += 8;
+        // }, 25);
 
         setInterval(() => {
             if (this.isBottleSplash()) {
@@ -41,6 +63,21 @@ class ThrowableObject extends MovableObject {
             } else {
                 this.playAnimation(this.ImagesRotation);
             }
-        }, 50);
+        }, 100);
+
     }
+    startMoveTo() {
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 25);
+    }
+    stopAnimate() {
+        this.stopMoveTo();
+    }
+    stopMoveTo() {
+        this.speedY = 0;
+        clearInterval(this.moveToInterval);
+    }
+    moveTo() {
+        this.x += 8;
+    }
+
 }

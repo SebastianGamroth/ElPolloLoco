@@ -102,6 +102,10 @@ class World {
                     if (bottle.isColliding(enemy)) {
 
                         enemy.hitChiken();
+                        enemy.stopAnimate();
+
+                        this.lastTime = new Date().getTime();
+                        // this.deleteChicken(index);
 
                         // this.level.enemies.splice(index, 1);
                         this.throwableObject.splice(id, 1);
@@ -110,6 +114,10 @@ class World {
             });
         });
     }
+    deleteChicken(index) {
+        this.level.enemies.splice(index, 1);
+    }
+
 
     checkCollisionsEndBoss() {
         this.throwableObject.forEach((bottle, id) => {
@@ -154,19 +162,25 @@ class World {
 
                 this.character.bottle -= 20;
                 this.statusBarBottle.setPercentage(this.character.bottle);
+
             }
         }
     }
-
-
-    checkCollisionsBottleSplash(){
-        this.throwableObject.forEach(bottle => {
-            if(bottle.y > 400){
-                // console.log('155');
-                // isBottleSplash
+    checkCollisionsBottleSplash() {
+        this.throwableObject.forEach((bottle, id) => {
+            if (bottle.y > 350) {
+                console.log(bottle.y);
+                bottle.hitBottleSplash();
+                bottle.stopAnimate();
+            } 
+            if (bottle.y > 450) {
+                console.log(bottle.y);
+                this.throwableObject.splice(id, 1);
             }
         });
     }
+
+
 
 
     checkCollisionsChicken() {

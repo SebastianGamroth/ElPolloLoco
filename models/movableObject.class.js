@@ -52,6 +52,7 @@ class MovableObject extends DrawableObject {
 
     }
 
+
     hit() {
         this.energy -= 20;
         if (this.energy < 0) {
@@ -60,11 +61,27 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
-
-    isBottleSplash(){
-        let x;
-        // console.log('empty')
+    isHurtBoss() {
+        let timepassed = new Date().getTime() - this.lastHitBoss;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.8;
     }
+
+
+    bottleSplash = false;
+    // lastHitBottle;
+    hitBottleSplash() {
+        // this.lastHit = new Date().getTime();
+        this.bottleSplash = true;
+    }
+    isBottleSplash() {
+        // let timepassed = new Date().getTime() - this.lastHitBottle;
+        // timepassed = timepassed / 1000;
+        // return timepassed < 0.8;
+
+        return this.bottleSplash;
+    }
+
 
     hitCoin() {
         this.coin += 20;
@@ -74,11 +91,11 @@ class MovableObject extends DrawableObject {
         this.bottle += 20;
     }
 
-    
+
     hitChiken() {
         this.energyChiken -= 20;
     }
-    
+
     chikenDead() {
         return this.energyChiken == 0;
     }
@@ -90,11 +107,7 @@ class MovableObject extends DrawableObject {
         this.lastHitBoss = new Date().getTime();
     }
 
-    isHurtBoss() {
-        let timepassed = new Date().getTime() - this.lastHitBoss;
-        timepassed = timepassed / 1000;
-        return timepassed < 0.8;
-    }
+
 
     isBossDead() {
         return this.energyBoss == 0;
