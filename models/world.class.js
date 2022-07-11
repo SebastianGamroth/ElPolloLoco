@@ -11,6 +11,7 @@ class World {
     statusBarBottle = new StatusBarBottle();
     statusBarHealth = new StatusBarHealth();
     statusBarCoins = new StatusBarCoins();
+    statusBarBoss = new StatusBarBoss();
     throwableObject = [];
     newCloud = [];
 
@@ -166,15 +167,13 @@ class World {
     checkCollisionsEndBoss() {
         this.throwableObject.forEach((bottle, id) => {
 
-            let boss = this.boss;
-            let bossLevel = this.level.enemieBoss[0];
+            let boss = this.level.enemieBoss[0];
 
             if (this.throwableObject.length > 0) {
-                if (bottle.isColliding(bossLevel)) {
+                if (bottle.isColliding(boss)) {
 
-                    this.level.enemieBoss[0].hitBoss();
-                    // bossLevel.hitBoss();
-                    // boss.hitBoss();
+                    boss.hitBoss();
+                    this.statusBarBoss.setPercentage(boss.energyBoss);
 
                     // this.chikenArray.splice(index, 1);
                     this.throwableObject.splice(id, 1);
@@ -228,6 +227,8 @@ class World {
         this.addObjectsToMap(this.level.enemies);
 
         this.addObjectsToMap(this.level.enemieBoss);
+        this.addToMap(this.statusBarBoss);
+
         // this.addToMap(this.boss);   
         // this.addToMap(this.level.enemieBoss[0]);
 
