@@ -108,15 +108,15 @@ class World {
                         // this.deleteChicken(index);
 
                         // this.level.enemies.splice(index, 1);
-                        this.throwableObject.splice(id, 1);
+                        // this.throwableObject.splice(id, 1);
                     }
                 }
             });
         });
     }
-    deleteChicken(index) {
-        this.level.enemies.splice(index, 1);
-    }
+    // deleteChicken(index) {
+    //     this.level.enemies.splice(index, 1);
+    // }
 
 
     checkCollisionsEndBoss() {

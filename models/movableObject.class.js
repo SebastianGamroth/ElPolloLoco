@@ -94,6 +94,9 @@ class MovableObject extends DrawableObject {
 
     hitChiken() {
         this.energyChiken -= 20;
+        if (this.energyChiken < 0) {
+            this.energyChiken = 0;
+        }
     }
 
     chikenDead() {
