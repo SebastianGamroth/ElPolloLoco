@@ -5,12 +5,6 @@ let level1;
 level1 = new Level(
     [
         new Fence('./img/5_background/fence.png', -650),
-        // new Chiken(),
-        // new Chiken(),
-        // new Chiken(),
-        // new Chiken(),
-        // new Chiken(),
-        // new Chiken(),
         new Chiken(),
         new Chiken(),
         new Chiken()

@@ -1,8 +1,8 @@
 class World {
 
+
     startScreen = new StartScreen();
     character = new Character();
-    // boss = new EndBoss();
     level = level1;
     canvas;
     ctx;
@@ -15,50 +15,53 @@ class World {
     throwableObject = [];
     newCloud = [];
 
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisionsChicken();
         this.run();
         // initLevel();
-        // this.checkCollisionsCoins();
-        // this.checkCollisionsBottle();
-        // this.checkCollisionsEndBoss();
-
-        // this.enemiesAnimate()
     };
+
 
     setWorld() {
         this.character.world = this;
     }
 
+
     run() {
         setInterval(() => {
-            this.checkCollisionsChicken();
-            this.checkCollisionsCoins();
-            this.checkCollisionsBottle();
-            this.checkThrowableObject();
-            this.checkCollisionsEndBoss();
-            this.checkCollisionsChickenEnd();
-            this.checkCollisionsChickenBottle();
-            this.checkCollisionsCloudsEnd()
-            this.checkCollisionsBottleSplash();
+            this.chickenCollisionCharacter();
+            this.chickenBabyCollisionCharacter();
+            this.charackterPickUpCoins();
+            this.charackterPickUpBottle();
+            this.characterThrowsBottle();
+            this.bottleHitsEndBoss();
+            this.chickenEndAndRemove();
+            this.bottleHitsChicken();
+            this.cloudsEndAndRemove();
+            this.bottleSplash();
+            this.endBossAttackCharacter();
+            this.endBossThrowsChickenBaby();
+            this.chickenBabyNowBigChicken();
 
-            this.newClouds();
+            this.createClouds();
         }, 200);
     }
 
-    newClouds() {
+
+    createClouds() {
         if (this.level.clouds.length == 7) {
             let cloud = new Cloud(2800);
             this.level.clouds.push(cloud);
         }
     }
 
-    checkCollisionsCloudsEnd() {
+
+    cloudsEndAndRemove() {
         this.level.clouds.forEach((enemy, index) => {
             if (enemy.x < -1200) {
                 // enemy.splice(index, 1);
@@ -67,26 +70,8 @@ class World {
         });
     }
 
-    // chikenArray = [];
 
-    // enemiesAnimate() {
-    //     setInterval(() => {
-    //         let chiken = new Chiken();
-    //         this.chikenArray.push(chiken);
-
-    //         chiken.animate();
-
-    //         // this.chikenArray.forEach((enemy) => {
-    //         //     if (enemy instanceof Chiken) {
-    //         //         enemy.animate();
-    //         //     }
-    //         // });
-
-
-    //     }, 4000);
-    // }
-
-    checkCollisionsChickenEnd() {
+    chickenEndAndRemove() {
         this.level.enemies.forEach((enemy, index) => {
             if (enemy.x < 100) {
                 this.level.enemies.splice(index, 1);
@@ -94,7 +79,8 @@ class World {
         });
     }
 
-    checkCollisionsChickenBottle() {
+
+    bottleHitsChicken() {
         this.throwableObject.forEach((bottle, id) => {
             this.level.enemies.forEach((enemy, index) => {
 
@@ -114,12 +100,9 @@ class World {
             });
         });
     }
-    // deleteChicken(index) {
-    //     this.level.enemies.splice(index, 1);
-    // }
 
 
-    checkCollisionsEndBoss() {
+    bottleHitsEndBoss() {
         this.throwableObject.forEach((bottle, id) => {
 
             let boss = this.level.enemieBoss[0];
@@ -136,24 +119,54 @@ class World {
         });
     }
 
-    // checkCollisionsBottleGround() {
-    //     this.throwableObject.forEach((bottle, id) => {
-    //         this.chikenArray.forEach((enemy, index) => {
 
-    //             if (this.throwableObject.length > 0) {
-    //                 if (bottle.isColliding(enemy)) {
+    chickenBabys = [];
+    endBossAttackCharacter() {
+        let boss = this.level.enemieBoss[0];
+        if (this.character.x > 400) {
+            boss.isBossAttackTrue();
 
-    //                     this.chikenArray.splice(index, 1);
-    //                     this.throwableObject.splice(id, 1);
-    //                 }
-    //             }
+            if (this.chickenBabys.length < 1) {
+                let chicken = new ChikenBabys();
+                this.chickenBabys.push(chicken);
+            }
+        }
+        else { boss.isBossAttackFalse(); }
+    }
 
-    //         });
-    //     });
-    // }
+
+    endBossThrowsChickenBaby() {
+        this.chickenBabys.forEach((chicken, id) => {
+            if (chicken.y > 280) {
+                chicken.ischikenBabyDead();
+            }
+            if (chicken.y > 450) {
+                this.chickenBabys.splice(id, 1);
+            }
+        });
+    }
 
 
-    checkThrowableObject() {
+    chickenBabyCollisionCharacter() {
+        this.chickenBabys.forEach((enemy) => {
+            if (enemy.isColliding(this.character)) {
+                this.character.hit();
+                this.statusBarHealth.setPercentage(this.character.energy);
+            }
+        });
+    }
+
+
+    chickenBabyNowBigChicken() {
+        this.level.enemies.forEach(enemy => {
+            if (enemy.x < this.character.x + 300) {
+                enemy.isChickenBabyNowBigger();
+            }
+        });
+    }
+
+
+    characterThrowsBottle() {
         if (this.character.bottle > 0) {
             if (this.keyboard.D) {
 
@@ -166,47 +179,33 @@ class World {
             }
         }
     }
-    checkCollisionsBottleSplash() {
+
+
+    bottleSplash() {
         this.throwableObject.forEach((bottle, id) => {
             if (bottle.y > 350) {
-                console.log(bottle.y);
                 bottle.hitBottleSplash();
                 bottle.stopAnimate();
-            } 
+            }
             if (bottle.y > 450) {
-                console.log(bottle.y);
                 this.throwableObject.splice(id, 1);
             }
         });
     }
 
 
-
-
-    checkCollisionsChicken() {
+    chickenCollisionCharacter() {
         this.level.enemies.forEach((enemy) => {
             if (enemy.isColliding(this.character)) {
+
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy);
             }
         });
-
-        // // if (this.keyboard.startGame) {
-        // this.level.enemies.forEach((enemy) => {
-        //     if (this.character.isColliding(enemy)) {
-
-        //         this.character.hit();
-        //         this.statusBarHealth.setPercentage(this.character.energy);
-        //     }
-        // });
-        // // }
     }
 
-
-
-
-
-    checkCollisionsCoins() {
+    
+    charackterPickUpCoins() {
         this.level.coins.forEach((enemy, index) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hitCoin();
@@ -217,7 +216,8 @@ class World {
         });
     }
 
-    checkCollisionsBottle() {
+
+    charackterPickUpBottle() {
         this.level.bottle.forEach((enemy, index) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hitBottle();
@@ -227,7 +227,6 @@ class World {
             }
         });
     }
-
 
 
     // start = false;
@@ -250,6 +249,8 @@ class World {
 
         this.addObjectsToMap(this.level.enemieBoss);
         this.addToMap(this.statusBarBoss);
+
+        this.addObjectsToMap(this.chickenBabys);
 
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);

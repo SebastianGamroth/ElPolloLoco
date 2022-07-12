@@ -27,7 +27,9 @@ class MovableObject extends DrawableObject {
     };
 
     isAboveGround() {
-        if (this instanceof ThrowableObject) {
+        if (this instanceof ThrowableObject ||
+            this instanceof ChikenBabys ||
+            this instanceof Chiken) {
             return true;
         } else {
             return this.y < 155;
@@ -53,6 +55,15 @@ class MovableObject extends DrawableObject {
     }
 
 
+    chickenBabyNowBiggerBoolean = false;
+    isChickenBabyNowBigger() {
+        this.chickenBabyNowBiggerBoolean = true;
+    }
+    chickenBabyNowBigger() {
+        return this.chickenBabyNowBiggerBoolean;
+    }
+
+
     hit() {
         this.energy -= 20;
         if (this.energy < 0) {
@@ -61,11 +72,7 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
-    isHurtBoss() {
-        let timepassed = new Date().getTime() - this.lastHitBoss;
-        timepassed = timepassed / 1000;
-        return timepassed < 0.8;
-    }
+
 
 
     bottleSplash = false;
@@ -80,6 +87,15 @@ class MovableObject extends DrawableObject {
         // return timepassed < 0.8;
 
         return this.bottleSplash;
+    }
+
+
+    chickenBaby = false;
+    ischikenBabyDead() {
+        this.chickenBaby = true;
+    }
+    chikenBabyDead() {
+        return this.chickenBaby;
     }
 
 
@@ -104,17 +120,30 @@ class MovableObject extends DrawableObject {
     }
 
 
+    bossAttack = false;
     hitBoss() {
         this.energyBoss -= 20;
-
         this.lastHitBoss = new Date().getTime();
     }
-
-
-
+    isHurtBoss() {
+        let timepassed = new Date().getTime() - this.lastHitBoss;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.8;
+    }
+    isBossAttackTrue() {
+        this.bossAttack = true;
+    }
+    isBossAttackFalse() {
+        this.bossAttack = false;
+    }
+    isBossAttack() {
+        return this.bossAttack;
+    }
     isBossDead() {
         return this.energyBoss == 0;
     }
+
+
 
     damageEnemy() {
         this.damage -= 20;

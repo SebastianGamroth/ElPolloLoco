@@ -21,15 +21,21 @@ class Chiken extends MovableObject {
         './img/3_enemies_chicken/chicken_normal/1_walk/3_w.png'
     ];
 
-    ImagesDead = [
+    ImagesDeadChicken = [
         './img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
+
+    ImagesDeadChickenBaby = [
+        './img/3_enemies_chicken/chicken_small/4_dead/dead.png'
+    ];
+
 
     constructor() {
         super().loadImage(this.ImagesWalking[0]);
         this.loadImages(this.ImagesWalking);
         this.loadImages(this.ImagesBaby);
-        this.loadImages(this.ImagesDead);
+        this.loadImages(this.ImagesDeadChicken);
+        this.loadImages(this.ImagesDeadChickenBaby);
 
         this.x = 400 + Math.random() * 500; // 200-700
         this.speed = 0.4 + Math.random() * 0.5;
@@ -58,10 +64,18 @@ class Chiken extends MovableObject {
 
         setInterval(() => {
             if (this.chikenDead()) {
-                this.playAnimation(this.ImagesDead);
-            } else if (!this.chikenDead()) {
+                this.playAnimation(this.ImagesDeadChickenBaby);
+                this.speedY = 0;
+                this.applyGravity();
+            }
+            if (!this.chikenDead()) {
+                this.playAnimation(this.ImagesBaby);
+            }
+            if (this.chickenBabyNowBigger()) {
                 this.playAnimation(this.ImagesWalking);
             }
+
+            
         }, 200);
 
     }
