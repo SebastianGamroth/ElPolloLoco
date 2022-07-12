@@ -191,6 +191,17 @@ class World {
     }
 
 
+    // timeZ;
+    // throwsEnergy() {
+    //     this.timeZ = setTimeout(this.go.bind(this), 600);
+    // }
+    // go() {
+    //     this.character.energyThrow += 40;
+    //     this.StatusBarThrowEnergie.setPercentage(this.character.energyThrow);
+    //     clearInterval(this.timeZ)
+    // }
+
+    
     characterThrowsBottle() {
         if (this.character.bottle > 0) {
 
