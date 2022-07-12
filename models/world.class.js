@@ -123,12 +123,14 @@ class World {
     chickenBabys = [];
     endBossAttackCharacter() {
         let boss = this.level.enemieBoss[0];
-        if (this.character.x > 400) {
+        if (boss.x < this.character.x + 300) {
             boss.isBossAttackTrue();
 
-            if (this.chickenBabys.length < 1) {
-                let chicken = new ChikenBabys();
-                this.chickenBabys.push(chicken);
+            if (boss.energyBoss > 0) {
+                if (this.chickenBabys.length < 1) {
+                    let chicken = new ChikenBabys();
+                    this.chickenBabys.push(chicken);
+                }
             }
         }
         else { boss.isBossAttackFalse(); }
@@ -204,7 +206,7 @@ class World {
         });
     }
 
-    
+
     charackterPickUpCoins() {
         this.level.coins.forEach((enemy, index) => {
             if (this.character.isColliding(enemy)) {

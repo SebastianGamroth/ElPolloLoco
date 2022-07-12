@@ -29,7 +29,8 @@ class MovableObject extends DrawableObject {
     isAboveGround() {
         if (this instanceof ThrowableObject ||
             this instanceof ChikenBabys ||
-            this instanceof Chiken) {
+            this instanceof Chiken ||
+            this instanceof EndBoss) {
             return true;
         } else {
             return this.y < 155;
@@ -55,6 +56,7 @@ class MovableObject extends DrawableObject {
     }
 
 
+
     chickenBabyNowBiggerBoolean = false;
     isChickenBabyNowBigger() {
         this.chickenBabyNowBiggerBoolean = true;
@@ -62,6 +64,16 @@ class MovableObject extends DrawableObject {
     chickenBabyNowBigger() {
         return this.chickenBabyNowBiggerBoolean;
     }
+    hitChiken() {
+        this.energyChiken -= 20;
+        if (this.energyChiken < 0) {
+            this.energyChiken = 0;
+        }
+    }
+    chikenDead() {
+        return this.energyChiken == 0;
+    }
+
 
 
     hit() {
@@ -71,6 +83,17 @@ class MovableObject extends DrawableObject {
         } else {
             this.lastHit = new Date().getTime();
         }
+    }
+    damageEnemy() {
+        this.damage -= 20;
+    }
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.4;
+    }
+    isDead() {
+        return this.energy == 0;
     }
 
 
@@ -90,6 +113,7 @@ class MovableObject extends DrawableObject {
     }
 
 
+
     chickenBaby = false;
     ischikenBabyDead() {
         this.chickenBaby = true;
@@ -99,25 +123,14 @@ class MovableObject extends DrawableObject {
     }
 
 
+
     hitCoin() {
         this.coin += 20;
     }
-
     hitBottle() {
         this.bottle += 20;
     }
 
-
-    hitChiken() {
-        this.energyChiken -= 20;
-        if (this.energyChiken < 0) {
-            this.energyChiken = 0;
-        }
-    }
-
-    chikenDead() {
-        return this.energyChiken == 0;
-    }
 
 
     bossAttack = false;
@@ -137,26 +150,10 @@ class MovableObject extends DrawableObject {
         this.bossAttack = false;
     }
     isBossAttack() {
-        return this.bossAttack;
+        return this.bossAttack == 1;
     }
     isBossDead() {
         return this.energyBoss == 0;
-    }
-
-
-
-    damageEnemy() {
-        this.damage -= 20;
-    }
-
-    isHurt() {
-        let timepassed = new Date().getTime() - this.lastHit;
-        timepassed = timepassed / 1000;
-        return timepassed < 0.4;
-    }
-
-    isDead() {
-        return this.energy == 0;
     }
 
 

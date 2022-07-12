@@ -67,15 +67,11 @@ class Chiken extends MovableObject {
                 this.playAnimation(this.ImagesDeadChickenBaby);
                 this.speedY = 0;
                 this.applyGravity();
-            }
-            if (!this.chikenDead()) {
+            } else if (this.chickenBabyNowBigger()) {
+                this.playAnimation(this.ImagesWalking);
+            } else {
                 this.playAnimation(this.ImagesBaby);
             }
-            if (this.chickenBabyNowBigger()) {
-                this.playAnimation(this.ImagesWalking);
-            }
-
-            
         }, 200);
 
     }
