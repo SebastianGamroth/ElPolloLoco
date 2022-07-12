@@ -101,23 +101,29 @@ class World {
         });
     }
 
-
+    bottleTimer = [];
     bottleHitsEndBoss() {
         this.throwableObject.forEach((bottle, id) => {
-
             let boss = this.level.enemieBoss[0];
 
             if (this.throwableObject.length > 0) {
                 if (bottle.isColliding(boss)) {
 
+                    // if (!this.bottleTimer.includes(bottle.timer)) {
+
                     boss.hitBoss();
                     this.statusBarBoss.setPercentage(boss.energyBoss);
 
+                    // this.bottleTimer.push(bottle.timer);
                     this.throwableObject.splice(id, 1);
+                    // console.log(this.bottleTimer)
+                    // }
                 }
             }
+            // console.log('ok')
         });
     }
+
 
 
     chickenBabys = [];
@@ -168,11 +174,27 @@ class World {
     }
 
 
+    checkThrowsEnergy = true;
+
+    throwsEnergy() {
+        setTimeout(this.go, 3000);
+    }
+    go() {
+        console.log('3sek');
+        console.log('checkThrowsEnergy ',this.checkThrowsEnergy);
+        this.checkThrowsEnergy = true;
+    }
+
     characterThrowsBottle() {
         if (this.character.bottle > 0) {
-            if (this.keyboard.D) {
+            if (this.keyboard.D && this.checkThrowsEnergy == true) {
 
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                this.checkThrowsEnergy = false;
+                this.throwsEnergy();
+
+                let timer = Math.round(Date.now() / 1000);
+
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, timer);
                 this.throwableObject.push(bottle);
 
                 this.character.bottle -= 20;
@@ -245,7 +267,7 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
 
         this.addToMap(this.character);
-        this.addObjectsToMap(this.throwableObject);
+
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
 
@@ -253,6 +275,8 @@ class World {
         this.addToMap(this.statusBarBoss);
 
         this.addObjectsToMap(this.chickenBabys);
+
+        this.addObjectsToMap(this.throwableObject);
 
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);

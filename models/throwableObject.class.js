@@ -16,7 +16,7 @@ class ThrowableObject extends MovableObject {
         './img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
     ];
 
-    constructor(x, y) {
+    constructor(x, y, timer) {
         super().loadImage(this.ImagesRotation[0]);
         this.loadImages(this.ImagesRotation);
         this.loadImages(this.ImagesSplash);
@@ -24,6 +24,7 @@ class ThrowableObject extends MovableObject {
         this.y = y;
         this.height = 60;
         this.width = 50;
+        this.timer = timer;
         // this.throw();
 
         this.animate();
