@@ -8,6 +8,7 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    StatusBarThrowEnergie = new StatusBarThrowEnergie();
     statusBarBottle = new StatusBarBottle();
     statusBarHealth = new StatusBarHealth();
     statusBarCoins = new StatusBarCoins();
@@ -109,15 +110,15 @@ class World {
             if (this.throwableObject.length > 0) {
                 if (bottle.isColliding(boss)) {
 
-                    // if (!this.bottleTimer.includes(bottle.timer)) {
+                    if (!this.bottleTimer.includes(bottle.timer)) {
 
-                    boss.hitBoss();
-                    this.statusBarBoss.setPercentage(boss.energyBoss);
+                        boss.hitBoss();
+                        this.statusBarBoss.setPercentage(boss.energyBoss);
 
-                    // this.bottleTimer.push(bottle.timer);
-                    this.throwableObject.splice(id, 1);
-                    // console.log(this.bottleTimer)
-                    // }
+                        this.bottleTimer.push(bottle.timer);
+                        // this.throwableObject.splice(id, 1);
+                        // console.log(this.bottleTimer)
+                    }
                 }
             }
             // console.log('ok')
@@ -174,22 +175,30 @@ class World {
     }
 
 
-    checkThrowsEnergy = true;
-
+    energyThrow = 3;
     throwsEnergy() {
-        setTimeout(this.go, 3000);
+        let time = setInterval(() => {
+            this.energyThrow++;
+
+            if (this.energyThrow >= 3) {
+                clearInterval(time);
+            }
+
+            this.character.energyThrow += 20;
+            this.StatusBarThrowEnergie.setPercentage(this.character.energyThrow);
+
+        }, 600);
     }
-    go() {
-        console.log('3sek');
-        console.log('checkThrowsEnergy ',this.checkThrowsEnergy);
-        this.checkThrowsEnergy = true;
-    }
+
 
     characterThrowsBottle() {
         if (this.character.bottle > 0) {
-            if (this.keyboard.D && this.checkThrowsEnergy == true) {
 
-                this.checkThrowsEnergy = false;
+            if (this.keyboard.D && this.energyThrow >= 3) {
+
+                this.energyThrow = 0;
+                this.character.energyThrow = 0;
+                this.StatusBarThrowEnergie.setPercentage(this.character.energyThrow);
                 this.throwsEnergy();
 
                 let timer = Math.round(Date.now() / 1000);
@@ -285,6 +294,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------
+        this.addToMap(this.StatusBarThrowEnergie);
         this.addToMap(this.statusBarBottle);
         this.addToMap(this.statusBarHealth);
         this.addToMap(this.statusBarCoins);

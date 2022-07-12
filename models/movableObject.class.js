@@ -11,6 +11,7 @@ class MovableObject extends DrawableObject {
     energy = 100;
     energyChiken = 20;
     energyBoss = 100;
+    energyThrow = 60;
     coin = 0;
     bottle = 0;
     lastHit = 0;
@@ -98,6 +99,7 @@ class MovableObject extends DrawableObject {
 
 
 
+
     bottleSplash = false;
     // lastHitBottle;
     hitBottleSplash() {
@@ -130,7 +132,9 @@ class MovableObject extends DrawableObject {
     hitBottle() {
         this.bottle += 20;
     }
-
+    fillEnergyThrow(){
+        this.energyThrow+=20;
+    }
 
 
     bossAttack = false;
