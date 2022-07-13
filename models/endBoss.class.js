@@ -62,25 +62,30 @@ class EndBoss extends MovableObject {
     }
 
     animate() {
-        setInterval(() => {
+        this.startMoveTo();
+    }
 
-            if (this.isBossDead()) {
-                this.playAnimation(this.ImagesDead);
-                this.speedY = 5;
-                this.applyGravity();
-            }
-            else if (this.isHurtBoss()) {
-                this.playAnimation(this.ImagesHurt);
-            }
-            else if (this.isBossAttack()) {
-                this.playAnimation(this.ImagesAttack);
-            }
-
-            else {
-                // this.playAnimation(this.ImagesWalk);
-                this.loadImage(this.ImagesWalk[3]);
-            }
-
-        }, 200);
+    startMoveTo() {
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 200);
+    }
+    stopAnimate() {
+        this.stopMoveTo();
+    }
+    stopMoveTo() {
+        clearInterval(this.moveToInterval);
+    }
+    moveTo() {
+        if (this.isBossDead()) {
+            this.playAnimation(this.ImagesDead);
+            this.speedY = 5;
+            this.applyGravity();
+        } else if (this.isHurtBoss()) {
+            this.playAnimation(this.ImagesHurt);
+        } else if (this.isBossAttack()) {
+            this.playAnimation(this.ImagesAttack);
+        } else {
+            // this.playAnimation(this.ImagesWalk);
+            this.loadImage(this.ImagesWalk[3]);
+        }
     }
 }

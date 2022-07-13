@@ -12,7 +12,6 @@
 
     <script src="./models/world.class.js"></script>
     <script src="./models/drawableObject.class.js"></script>
-    <script src="./models/startScreen.class.js"></script>
     <script src="./models/statusBarThrowEnergie.class.js"></script>
     <script src="./models/statusBarBottle.class.js"></script>
     <script src="./models/statusBarHealth.class.js"></script>
@@ -31,17 +30,21 @@
     <script src="./models/key.class.js"></script>
     <script src="./models/level.class.js"></script>
     <script src="./models/endBoss.class.js"></script>
+    <script src="./models/gameOverScreen.class.js"></script>
     <script src="./levels/level1.js"></script>
     <script src="./js/game.js"></script>
 </head>
 
-<body onload="init();">
+<body>
+    <!-- onload="init()" -->
+
+    <div class="start" id="start"><img src="./img/9_intro_outro_screens/start/startscreen_1.png"></div>
 
     <h1>El Pollo Loco</h1>
 
     <canvas id="canvas" width="720px" height="480px"></canvas>
 
-    <!-- <button onclick="start()">PLAY</button> -->
+    <button class="btnStart" id="btnStart" onclick="start()">PLAY</button>
 
 </body>
 

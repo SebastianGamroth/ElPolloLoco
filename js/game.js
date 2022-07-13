@@ -6,16 +6,16 @@ let keyboard = new Keyboard();
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-    // console.log('My Character ', world.character);
 }
 
-// window.addEventListener("click", onClick);
 
-// function onClick() {
-//     keyboard.startGame = true;
+function start() {
+    // keyboard.startGame = true;
+    init();
+    document.getElementById('start').classList.add('d-none');
+    document.getElementById('btnStart').classList.add('d-none');
+}
 
-// }
 
 
 window.addEventListener('keydown', (e) => {

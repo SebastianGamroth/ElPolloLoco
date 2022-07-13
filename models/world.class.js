@@ -1,9 +1,9 @@
 class World {
 
 
-    startScreen = new StartScreen();
+    // gameOverScreen = new GameOverScreen();
     character = new Character();
-    level = level1;
+    level = initLevel();
     canvas;
     ctx;
     keyboard;
@@ -14,8 +14,8 @@ class World {
     statusBarCoins = new StatusBarCoins();
     statusBarBoss = new StatusBarBoss();
     throwableObject = [];
-    newCloud = [];
-
+    // newCloud = [];
+    gameOverScreenArray = [];
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -24,6 +24,7 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+
         // initLevel();
     };
 
@@ -48,9 +49,64 @@ class World {
             this.endBossAttackCharacter();
             this.endBossThrowsChickenBaby();
             this.chickenBabyNowBigChicken();
-
             this.createClouds();
+            this.gameOver();
         }, 200);
+    }
+
+
+    stopMove() {
+        this.enemiesStopAnimate();
+        this.endBossStopAnimate();
+        // this.characterStopAnimate();
+        this.cloudsStopAnimate();
+
+        this.gameOverScreen();
+    }
+    cloudsStopAnimate() {
+        this.level.clouds.forEach((cloud) => {
+            if (cloud instanceof Cloud) {
+                cloud.stopAnimate();
+            }
+        });
+    }
+    endBossStopAnimate() {
+        this.level.enemieBoss[0].stopAnimate();
+    }
+    characterStopAnimate() {
+        this.character.stopAnimate();
+    }
+    enemiesStopAnimate() {
+        this.level.enemies.forEach((enemy) => {
+            if (enemy instanceof Chiken) {
+                enemy.stopAnimate();
+            }
+        });
+    }
+
+    onceOver = true;
+
+    gameOver() {
+        if (this.character.isDead() || this.level.enemieBoss[0].isBossDead()) {
+
+            if (this.onceOver == true) {
+                this.onceOver = false;
+                // this.stopMove();
+                this.onceOver = setTimeout(this.stopMove.bind(this), 100);
+                this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
+            }
+        }
+    }
+
+
+    gameOverScreen() {
+        let screen = new GameOverScreen();
+        this.gameOverScreenArray.push(screen);
+    }
+
+    startScreen() {
+        document.getElementById('start').classList.remove('d-none');
+        document.getElementById('btnStart').classList.remove('d-none');
     }
 
 
@@ -82,29 +138,28 @@ class World {
 
 
     bottleHitsChicken() {
-        this.throwableObject.forEach((bottle, id) => {
-            this.level.enemies.forEach((enemy, index) => {
+        this.throwableObject.forEach((bottle) => {
+            this.level.enemies.forEach((enemy) => {
 
                 if (this.throwableObject.length > 0) {
                     if (bottle.isColliding(enemy)) {
 
                         enemy.hitChiken();
-                        enemy.stopAnimate();
+                        // enemy.stopAnimate();
 
                         this.lastTime = new Date().getTime();
-                        // this.deleteChicken(index);
-
-                        // this.level.enemies.splice(index, 1);
-                        // this.throwableObject.splice(id, 1);
                     }
                 }
             });
         });
     }
 
+
     bottleTimer = [];
+
+
     bottleHitsEndBoss() {
-        this.throwableObject.forEach((bottle, id) => {
+        this.throwableObject.forEach((bottle) => {
             let boss = this.level.enemieBoss[0];
 
             if (this.throwableObject.length > 0) {
@@ -116,24 +171,22 @@ class World {
                         this.statusBarBoss.setPercentage(boss.energyBoss);
 
                         this.bottleTimer.push(bottle.timer);
-                        // this.throwableObject.splice(id, 1);
-                        // console.log(this.bottleTimer)
                     }
                 }
             }
-            // console.log('ok')
         });
     }
 
 
-
     chickenBabys = [];
+
+
     endBossAttackCharacter() {
         let boss = this.level.enemieBoss[0];
-        if (boss.x < this.character.x + 300) {
+        if (boss.x < this.character.x + 460) {
             boss.isBossAttackTrue();
 
-            if (boss.energyBoss > 0) {
+            if (boss.energyBoss > 0 && this.character.energy > 0) {
                 if (this.chickenBabys.length < 1) {
                     let chicken = new ChikenBabys();
                     this.chickenBabys.push(chicken);
@@ -176,6 +229,8 @@ class World {
 
 
     energyThrow = 3;
+
+
     throwsEnergy() {
         let time = setInterval(() => {
             this.energyThrow++;
@@ -191,17 +246,6 @@ class World {
     }
 
 
-    // timeZ;
-    // throwsEnergy() {
-    //     this.timeZ = setTimeout(this.go.bind(this), 600);
-    // }
-    // go() {
-    //     this.character.energyThrow += 40;
-    //     this.StatusBarThrowEnergie.setPercentage(this.character.energyThrow);
-    //     clearInterval(this.timeZ)
-    // }
-
-    
     characterThrowsBottle() {
         if (this.character.bottle > 0) {
 
@@ -277,7 +321,6 @@ class World {
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        // this.addToMap(this.startScreen);
 
         // if (this.keyboard.startGame) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -285,23 +328,19 @@ class World {
         this.ctx.translate(this.camera_x, 0);
 
         this.addObjectsToMap(this.level.backgroundObjects);
+        // this.addObjectsToMap(this.newCloud);
+        this.addObjectsToMap(this.level.clouds);
 
         this.addToMap(this.character);
 
-        this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
-
         this.addObjectsToMap(this.level.enemieBoss);
         this.addToMap(this.statusBarBoss);
-
         this.addObjectsToMap(this.chickenBabys);
 
         this.addObjectsToMap(this.throwableObject);
-
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
-
-        this.addObjectsToMap(this.newCloud);
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------
@@ -309,6 +348,8 @@ class World {
         this.addToMap(this.statusBarBottle);
         this.addToMap(this.statusBarHealth);
         this.addToMap(this.statusBarCoins);
+
+        this.addObjectsToMap(this.gameOverScreenArray);
         this.ctx.translate(this.camera_x, 0);
 
         this.ctx.translate(-this.camera_x, 0);
