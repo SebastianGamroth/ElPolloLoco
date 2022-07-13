@@ -51,6 +51,9 @@ class World {
             this.chickenBabyNowBigChicken();
             this.createClouds();
             this.createNewChicken();
+
+            // this.hickenFly()
+
             this.gameOver();
         }, 200);
     }
@@ -90,7 +93,7 @@ class World {
 
             if (this.onceOver == true) {
                 this.onceOver = false;
-                
+
                 this.characterStopAnimate();
                 this.onceOver = setTimeout(this.stopMove.bind(this), 100);
                 this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
@@ -133,6 +136,15 @@ class World {
         }
     }
 
+
+    // hickenFly() {
+    //     this.level.enemies.forEach((enemy) => {
+    //         if (enemy.y > 200) {
+    //             console.log(enemy.y)
+    //             enemy.checkFly();
+    //         }
+    //     });
+    // }
 
 
     chickenEndAndRemove() {

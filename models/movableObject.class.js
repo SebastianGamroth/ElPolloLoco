@@ -50,10 +50,10 @@ class MovableObject extends DrawableObject {
             if (this.stopPunch < 10) {
                 this.x -= 20;
                 this.stopPunch += 1;
-                this.speedY = 10
+                this.speedY = 10;
             }
             clearInterval(stopPunchInterval);
-        }, 60);
+        }, 1000 / 25);
 
         this.stopPunch = 0;
     };
@@ -79,16 +79,46 @@ class MovableObject extends DrawableObject {
 
     }
 
-
+    lastFly = 0;
     jumpHeight = 10;
+    flyFast = 0;
     jump() {
         // this.acceleration = 1;
         this.speedY = this.jumpHeight;
     }
     randomBounce() {
         this.acceleration = 0.1 + Math.random() * 6;
-        if (Math.random() < 0.03 && !this.isAboveGround()) this.jump();
+        if (Math.random() < 0.03 && !this.isAboveGround()) {
+            this.jump();
+            this.flyChickenLeft();
+            this.lastFly = new Date().getTime();
+        }
     }
+
+
+    flyChickenLeft() {
+        let stopPunchInterval = setInterval(() => {
+            if (this.flyFast < 10) {
+                this.x -= 10;
+                this.flyFast += 1;
+                this.speedY = 20
+            }
+            clearInterval(stopPunchInterval);
+        }, 1000 / 25);
+
+        this.flyFast = 0;
+    };
+
+
+    checkFly() {
+        this.lastFly = new Date().getTime();
+    }
+    chickenFly() {
+        let timepassed = new Date().getTime() - this.lastFly;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.4;
+    }
+
 
 
     chickenBabyNowBiggerBoolean = false;
@@ -133,18 +163,18 @@ class MovableObject extends DrawableObject {
 
 
 
-    bottleSplash = false;
-    // lastHitBottle;
+    // bottleSplash = false;
+    lastHitBottle;
     hitBottleSplash() {
-        // this.lastHit = new Date().getTime();
-        this.bottleSplash = true;
+        this.lastHitBottle = new Date().getTime();
+        // this.bottleSplash = true;
     }
     isBottleSplash() {
-        // let timepassed = new Date().getTime() - this.lastHitBottle;
-        // timepassed = timepassed / 1000;
-        // return timepassed < 0.8;
+        let timepassed = new Date().getTime() - this.lastHitBottle;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.4;
 
-        return this.bottleSplash;
+        // return this.bottleSplash;
     }
 
 

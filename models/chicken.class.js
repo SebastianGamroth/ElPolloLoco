@@ -26,6 +26,13 @@ class Chiken extends MovableObject {
     ];
 
 
+    ImagesChickenFly = [
+        './img/3_enemies_chicken/chicken_normal/3_fly/1_w.png',
+        './img/3_enemies_chicken/chicken_normal/3_fly/2_w.png',
+        './img/3_enemies_chicken/chicken_normal/3_fly/3_w.png'
+    ];
+
+
     ImagesDeadChicken = [
         './img/3_enemies_chicken/chicken_normal/2_dead/dead.png'
     ];
@@ -39,6 +46,7 @@ class Chiken extends MovableObject {
     constructor() {
         super().loadImage(this.ImagesWalking[0]);
         this.loadImages(this.ImagesWalking);
+        this.loadImages(this.ImagesChickenFly);
         this.loadImages(this.ImagesBaby);
         this.loadImages(this.ImagesDeadChicken);
         this.loadImages(this.ImagesDeadChickenBaby);
@@ -92,10 +100,15 @@ class Chiken extends MovableObject {
             // this.y - 160;
             // this.applyGravity();
 
-        } else if (this.chickenBabyNowBigger()) {
+        }
+        else if (this.chickenFly()) {
+            this.playAnimation(this.ImagesChickenFly);
+        }
+        else if (this.chickenBabyNowBigger()) {
             this.playAnimation(this.ImagesWalking);
+        }
 
-        } else {
+        else {
             this.playAnimation(this.ImagesBaby);
         }
     }
