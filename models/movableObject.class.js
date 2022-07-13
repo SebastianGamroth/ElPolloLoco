@@ -41,6 +41,26 @@ class MovableObject extends DrawableObject {
         }
     };
 
+
+    stopPunch = 0;
+
+    characterPunch() {
+
+        let stopPunchInterval = setInterval(() => {
+            if (this.stopPunch < 10) {
+                this.x -= 20;
+                this.stopPunch += 1;
+                this.speedY = 10
+            }
+            clearInterval(stopPunchInterval);
+        }, 60);
+
+        this.stopPunch = 0;
+    };
+
+
+
+
     isColliding(mo) {
 
         // console.log(`

@@ -59,9 +59,7 @@ class World {
     stopMove() {
         this.enemiesStopAnimate();
         this.endBossStopAnimate();
-        // this.characterStopAnimate();
         this.cloudsStopAnimate();
-
         this.gameOverScreen();
     }
     cloudsStopAnimate() {
@@ -92,10 +90,10 @@ class World {
 
             if (this.onceOver == true) {
                 this.onceOver = false;
-                // this.stopMove();
+                
                 this.characterStopAnimate();
                 this.onceOver = setTimeout(this.stopMove.bind(this), 100);
-                this.onceOver = setTimeout(this.startScreen.bind(this), 1500);
+                this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
             }
         }
     }
@@ -258,7 +256,7 @@ class World {
     characterThrowsBottle() {
         if (this.character.bottle > 0) {
 
-            if (this.keyboard.D && this.energyThrow >= 3) {
+            if (this.keyboard.UP && this.energyThrow >= 3) {
 
                 this.energyThrow = 0;
                 this.character.energyThrow = 0;

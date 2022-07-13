@@ -75,6 +75,7 @@ class Character extends MovableObject {
 
     world;
     walkingSound = new Audio('./audio/running.mp3');
+    punchSound = new Audio('./audio/punch.mp3');
 
     constructor() {
         super().loadImage(this.ImagesWalking[0]);
@@ -191,21 +192,32 @@ class Character extends MovableObject {
 
 
     moveToPlayAnimate() {
+        this.punchSound.pause();
+
         if (this.isDead()) {
             this.speedY = 5;
             this.playAnimation(this.ImagesDead);
+
         } else if (this.isHurt()) {
+
+            this.characterPunch();
+
+            this.punchSound.play();
             this.playAnimation(this.ImagesHurt);
             this.conter = 1;
+
         } else if (this.isAboveGround()) {
             this.playAnimation(this.ImagesJumping);
             this.conter = 1;
+
         } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.playAnimation(this.ImagesWalking);
             this.conter = 1;
-        } else if (this.world.keyboard.D) {
+
+        } else if (this.world.keyboard.UP) {
             this.playAnimation(this.ImagesWait);
             this.conter = 1;
+
         } else {
             this.noMovement();
         }
