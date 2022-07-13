@@ -46,6 +46,10 @@ class Chiken extends MovableObject {
         this.x = 400 + Math.random() * 500; // 200-700
         this.speed = 0.4 + Math.random() * 0.5;
 
+        // this.jumpHeight= 5;
+        // this.jumpHeight = Math.random() * 10;
+        this.applyGravity();
+
         this.animate();
     };
 
@@ -73,17 +77,24 @@ class Chiken extends MovableObject {
 
 
     moveTo() {
-        this.moveLeft();
+        if (!this.chikenDead()) {
+            this.moveLeft();
+            this.randomBounce();
+        }
     }
 
 
     moveToStep() {
+
         if (this.chikenDead()) {
             this.playAnimation(this.ImagesDeadChickenBaby);
-            this.speedY = 0;
-            this.applyGravity();
+            // this.speedY = 0;
+            // this.y - 160;
+            // this.applyGravity();
+
         } else if (this.chickenBabyNowBigger()) {
             this.playAnimation(this.ImagesWalking);
+
         } else {
             this.playAnimation(this.ImagesBaby);
         }

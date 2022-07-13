@@ -23,17 +23,20 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
-            };
+            }
         }, 1000 / 25);
     };
 
     isAboveGround() {
         if (this instanceof ThrowableObject ||
             this instanceof ChikenBabys ||
-            this instanceof Chiken ||
+            // this instanceof Chiken ||
             this instanceof EndBoss) {
             return true;
-        } else {
+        } else if (this instanceof Chiken) {
+            return this.y < 355;
+        }
+        else {
             return this.y < 155;
         }
     };
@@ -56,6 +59,16 @@ class MovableObject extends DrawableObject {
 
     }
 
+
+    jumpHeight = 10;
+    jump() {
+        // this.acceleration = 1;
+        this.speedY = this.jumpHeight;
+    }
+    randomBounce() {
+        this.acceleration = 0.1 + Math.random() * 6;
+        if (Math.random() < 0.03 && !this.isAboveGround()) this.jump();
+    }
 
 
     chickenBabyNowBiggerBoolean = false;
@@ -132,8 +145,8 @@ class MovableObject extends DrawableObject {
     hitBottle() {
         this.bottle += 20;
     }
-    fillEnergyThrow(){
-        this.energyThrow+=20;
+    fillEnergyThrow() {
+        this.energyThrow += 20;
     }
 
 

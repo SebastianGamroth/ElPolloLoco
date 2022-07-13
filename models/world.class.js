@@ -50,6 +50,7 @@ class World {
             this.endBossThrowsChickenBaby();
             this.chickenBabyNowBigChicken();
             this.createClouds();
+            this.createNewChicken();
             this.gameOver();
         }, 200);
     }
@@ -92,8 +93,9 @@ class World {
             if (this.onceOver == true) {
                 this.onceOver = false;
                 // this.stopMove();
+                this.characterStopAnimate();
                 this.onceOver = setTimeout(this.stopMove.bind(this), 100);
-                this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
+                this.onceOver = setTimeout(this.startScreen.bind(this), 1500);
             }
         }
     }
@@ -127,10 +129,17 @@ class World {
         });
     }
 
+    createNewChicken() {
+        if (this.level.enemies.length <= 3) {
+            this.level.enemies.push(new Chiken);
+        }
+    }
+
+
 
     chickenEndAndRemove() {
         this.level.enemies.forEach((enemy, index) => {
-            if (enemy.x < 100) {
+            if (enemy.x < -600 || enemy.energyChiken == 0) {
                 this.level.enemies.splice(index, 1);
             }
         });
