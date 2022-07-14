@@ -13,6 +13,7 @@
     <script src="./models/world.class.js"></script>
     <script src="./models/drawableObject.class.js"></script>
     <script src="./models/statusBarThrowEnergie.class.js"></script>
+    <script src="./models/statusBarBlock.class.js"></script>
     <script src="./models/statusBarBottle.class.js"></script>
     <script src="./models/statusBarHealth.class.js"></script>
     <script src="./models/statusBarCoins.class.js"></script>
@@ -40,19 +41,70 @@
 
     <div class="start" id="start"><img src="./img/9_intro_outro_screens/start/startscreen_1.png">
 
-        <div class="howTo">
-            <h3>A</h3>
-            <h3>W</h3>
-            <h3>D</h3>
-            <h3>SPACE</h3>
-        </div>
+        <div class="howToContainer">
+            <div class="box">
+                <div class="howTo">
+                    <div class="howToBlock">
+                        <div class="flex">
+                            <h3>W</h3>
+                            <h4>Throw</h4>
+                        </div>
+                        <div class="howToCenter">
+                            <div class="flex">
+                                <h3>A</h3>
+                                <h4>Left</h4>
+                            </div>
+                            <div class="flex">
+                                <h3>D</h3>
+                                <h4>Right</h4>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <h3>S</h3>
+                            <h4>Block</h4>
+                        </div>
+                    </div>
+                    <div class="flex spaceBox">
+                        <h3 class="space">SPACE</h3>
+                        <h4>Jump</h4>
+                    </div>
+                </div>
 
-        <div class="howToArrow">
+                <div class="howToArrow">
+                    <div class="howToBlock">
+                        <div class="flex">
+                            <h3>↑</h3>
+                            <h4>Throw</h4>
+                        </div>
+                        <div class="howToCenter">
+                            <div class="flex">
+                                <h3>←</h3>
+                                <h4>Left</h4>
+                            </div>
+                            <div class="flex">
+                                <h3>→</h3>
+                                <h4>Right</h4>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <h3>↓</h3>
+                            <h4>Block</h4>
+                        </div>
+                    </div>
+                    <div class="flex spaceBox">
+                        <h3 class="space">SPACE</h3>
+                        <h4>Jump</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="howToArrow">
             <h3>←</h3>
             <h3>↑</h3>
+            <h3>↓</h3>
             <h3>→</h3>
-            <h3>SPACE</h3>
-        </div>
+            <h3 class="space">SPACE</h3>
+        </div> -->
 
     </div>
 
@@ -60,8 +112,9 @@
 
     <canvas id="canvas" width="720px" height="480px"></canvas>
 
-    <button class="btnStart" id="btnStart" onclick="start()">PLAY</button>
-
+    <div class="btnBox" id="btnStart">
+        <button class="btnStart" onclick="start()">PLAY</button>
+    </div>
 </body>
 
 </html>

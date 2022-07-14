@@ -9,6 +9,7 @@ class World {
     keyboard;
     camera_x = 0;
     StatusBarThrowEnergie = new StatusBarThrowEnergie();
+    StatusBarBlockEnergy = new StatusBarBlockEnergy();
     statusBarBottle = new StatusBarBottle();
     statusBarHealth = new StatusBarHealth();
     statusBarCoins = new StatusBarCoins();
@@ -51,6 +52,7 @@ class World {
             this.chickenBabyNowBigChicken();
             this.createClouds();
             this.createNewChicken();
+            this.characterBlockPunch();
 
             // this.hickenFly()
 
@@ -290,6 +292,9 @@ class World {
     }
 
 
+
+
+
     bottleSplash() {
         this.throwableObject.forEach((bottle, id) => {
             if (bottle.y > 350) {
@@ -303,14 +308,32 @@ class World {
     }
 
 
+    characterIsSave = false;
+
     chickenCollisionCharacter() {
         this.level.enemies.forEach((enemy) => {
             if (enemy.isColliding(this.character)) {
 
-                this.character.hit();
-                this.statusBarHealth.setPercentage(this.character.energy);
+                if (!this.characterIsSave) {
+                    this.character.hit();
+                    this.statusBarHealth.setPercentage(this.character.energy);
+                } else {
+                    this.character.hitIsSave();
+                    this.StatusBarBlockEnergy.setPercentage(this.character.energyBlock);
+                }
+
             }
         });
+    }
+
+
+    characterBlockPunch() {
+        if (this.keyboard.DOWN && this.character.energyBlock > 0) {
+            this.character.isCharacterBlock();
+            this.characterIsSave = true;
+        } else {
+            this.characterIsSave = false;
+        }
     }
 
 
@@ -366,6 +389,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------
         this.addToMap(this.StatusBarThrowEnergie);
+        this.addToMap(this.StatusBarBlockEnergy);
         this.addToMap(this.statusBarBottle);
         this.addToMap(this.statusBarHealth);
         this.addToMap(this.statusBarCoins);

@@ -57,6 +57,10 @@ class Character extends MovableObject {
         './img/2_character_pepe/3_jump/J-39.png'
     ];
 
+    ImagesBlock = [
+        './img/2_character_pepe/6_block/b-1.png'
+    ];
+
     ImagesDead = [
         // './img/2_character_pepe/5_dead/D-51.png',
         // './img/2_character_pepe/5_dead/D-52.png',
@@ -85,6 +89,7 @@ class Character extends MovableObject {
         this.loadImages(this.ImagesHurt);
         this.loadImages(this.ImagesWait);
         this.loadImages(this.ImagesSleep);
+        this.loadImages(this.ImagesBlock);
         this.applyGravity();
         this.animate();
     }
@@ -204,6 +209,11 @@ class Character extends MovableObject {
 
             this.punchSound.play();
             this.playAnimation(this.ImagesHurt);
+            this.conter = 1;
+
+        } else if (this.characterBlock()) {
+            console.log('block')
+            this.playAnimation(this.ImagesBlock);
             this.conter = 1;
 
         } else if (this.isAboveGround()) {

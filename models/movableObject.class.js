@@ -50,13 +50,14 @@ class MovableObject extends DrawableObject {
             if (this.stopPunch < 10) {
                 this.x -= 20;
                 this.stopPunch += 1;
-                this.speedY = 10;
+                this.speedY = 5;
             }
             clearInterval(stopPunchInterval);
         }, 1000 / 25);
 
         this.stopPunch = 0;
     };
+
 
 
 
@@ -148,6 +149,10 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+    hitIsSave() {
+        this.energyBlock -= 20;
+        this.lastHit = new Date().getTime();
+    }
     damageEnemy() {
         this.damage -= 20;
     }
@@ -159,7 +164,19 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     }
+    energyBlock = 100;
+    lastBlock;
+    isCharacterBlock() {
+        if (this.energyBlock > 0) {
 
+            this.lastBlock = new Date().getTime();
+        }
+    }
+    characterBlock() {
+        let timepassed = new Date().getTime() - this.lastBlock;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.4;
+    }
 
 
 
