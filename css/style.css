@@ -29,7 +29,40 @@ canvas {
     height: 100%;
 }
 
+.howTo,
+.howToArrow {
+    display: flex;
+    position: fixed;
+    position: absolute;
+    top: 20px;
+    left: 30px;
+}
+
+.howToArrow {
+    top: 60px;
+}
+
+.howTo h3,
+.howToArrow h3 {
+    border: 1px solid black;
+    border-radius: 6px;
+    margin: 6px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.howTo h3:last-child,
+.howToArrow h3:last-child {
+    width: 68px;
+}
+
 .btnStart {
+    position: absolute;
+    top: 40px;
     z-index: 1;
     cursor: pointer;
     width: 84px;
