@@ -12,10 +12,10 @@ class StatusBarThrowEnergie extends DrawableObject {
         super();
         this.loadImages(this.Images);
 
-        this.x = 230;
-        this.y = 20;
-        this.width = 200;
-        this.height = 53;
+        this.x = 180;
+        this.y = 10;
+        this.width = 150;
+        this.height = 40;
 
         this.setPercentage(60);
     };
