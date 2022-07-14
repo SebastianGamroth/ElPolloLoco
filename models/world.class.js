@@ -41,6 +41,7 @@ class World {
             this.chickenBabyCollisionCharacter();
             this.charackterPickUpCoins();
             this.charackterPickUpBottle();
+            this.charackterPickUpSombrero();
             this.characterThrowsBottle();
             this.bottleHitsEndBoss();
             this.chickenEndAndRemove();
@@ -360,6 +361,17 @@ class World {
         });
     }
 
+    charackterPickUpSombrero() {
+        this.level.sombrero.forEach((enemy, index) => {
+            if (this.character.isColliding(enemy)) {
+                this.character.hitSombrero();
+                this.StatusBarBlockEnergy.setPercentage(this.character.energyBlock);
+
+                this.level.sombrero.splice(index, 1);
+            }
+        });
+    }
+
 
     // start = false;
 
@@ -385,6 +397,7 @@ class World {
         this.addObjectsToMap(this.throwableObject);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
+        this.addObjectsToMap(this.level.sombrero);
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------

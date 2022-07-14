@@ -61,6 +61,9 @@ function initLevel() {
             new Bottle(400, 380),
             new Bottle(500, 380),
             new Bottle(600, 380)
+        ],
+        [
+            new Sombrero(-200, 390)
         ]
     );
 

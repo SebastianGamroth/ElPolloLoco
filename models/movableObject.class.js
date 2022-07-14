@@ -212,6 +212,9 @@ class MovableObject extends DrawableObject {
     hitBottle() {
         this.bottle += 20;
     }
+    hitSombrero() {
+        this.energyBlock += 20;
+    }
     fillEnergyThrow() {
         this.energyThrow += 20;
     }
