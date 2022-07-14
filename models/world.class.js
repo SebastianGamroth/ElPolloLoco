@@ -63,6 +63,7 @@ class World {
         this.enemiesStopAnimate();
         this.endBossStopAnimate();
         this.cloudsStopAnimate();
+        this.characterStopAnimate();
         this.gameOverScreen();
     }
     cloudsStopAnimate() {
@@ -94,8 +95,9 @@ class World {
             if (this.onceOver == true) {
                 this.onceOver = false;
 
-                this.characterStopAnimate();
-                this.onceOver = setTimeout(this.stopMove.bind(this), 100);
+                // this.characterStopAnimate();
+                this.stopMove();
+                // this.onceOver = setTimeout(this.stopMove.bind(this), 100);
                 this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
             }
         }

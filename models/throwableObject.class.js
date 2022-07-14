@@ -66,7 +66,6 @@ class ThrowableObject extends MovableObject {
 
             if (this.isBottleSplash()) {
                 this.bottleSplashSound.play();
-                console.log('audio')
                 this.playAnimation(this.ImagesSplash);
             } else {
                 this.playAnimation(this.ImagesRotation);
