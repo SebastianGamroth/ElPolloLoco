@@ -208,7 +208,7 @@ class World {
                     if (bottle.isColliding(enemy)) {
 
                         enemy.hitChiken();
-                        // enemy.stopAnimate();
+                        enemy.stopAnimate();
 
                         this.lastTime = new Date().getTime();
                     }
@@ -381,7 +381,7 @@ class World {
             this.character.isCharacterBlock();
             this.characterIsSave = true;
 
-            this.enemiesStopAnimate();
+            // this.enemiesStopAnimate();
         } else {
             this.characterIsSave = false;
         }
