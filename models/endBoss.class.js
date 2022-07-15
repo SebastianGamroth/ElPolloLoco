@@ -78,7 +78,7 @@ class EndBoss extends MovableObject {
         if (this.isBossDead()) {
             this.playAnimation(this.ImagesDead);
             this.speedY = 5;
-            this.applyGravity();
+            this.applyGravity(0);
         } else if (this.isHurtBoss()) {
             this.playAnimation(this.ImagesHurt);
         } else if (this.isBossAttack()) {

@@ -90,7 +90,7 @@ class Character extends MovableObject {
         this.loadImages(this.ImagesWait);
         this.loadImages(this.ImagesSleep);
         this.loadImages(this.ImagesBlock);
-        this.applyGravity();
+        this.applyGravity(0);
         this.animate();
     }
 
@@ -192,7 +192,15 @@ class Character extends MovableObject {
             this.jump();
         }
 
-        this.world.camera_x = -this.x + 100;
+
+        let cam;
+        if (this.x < 20) {
+            cam = 450;
+        }
+
+
+        if (cam == undefined) { cam = 100 }
+        this.world.camera_x = -this.x + cam;
     }
 
 
@@ -212,7 +220,6 @@ class Character extends MovableObject {
             this.conter = 1;
 
         } else if (this.characterBlock()) {
-            console.log('block')
             this.playAnimation(this.ImagesBlock);
             this.conter = 1;
 

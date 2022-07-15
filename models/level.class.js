@@ -6,10 +6,11 @@ class Level {
     coins;
     bottle;
     sombrero;
+    frog;
 
     levelEndX = 2250;
 
-    constructor(enemies, enemieBoss, clouds, backgroundObjects, coins, bottle, sombrero) {
+    constructor(enemies, enemieBoss, clouds, backgroundObjects, coins, bottle, sombrero, frog) {
         this.enemies = enemies;
         this.enemieBoss = enemieBoss;
         this.clouds = clouds;
@@ -17,5 +18,6 @@ class Level {
         this.coins = coins;
         this.bottle = bottle;
         this.sombrero = sombrero;
+        this.frog = frog;
     };
 }

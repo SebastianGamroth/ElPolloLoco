@@ -56,8 +56,7 @@ class Chiken extends MovableObject {
 
         // this.jumpHeight= 5;
         // this.jumpHeight = Math.random() * 10;
-        this.applyGravity();
-
+        this.applyGravity(10);
         this.animate();
     };
 
@@ -98,7 +97,7 @@ class Chiken extends MovableObject {
             this.playAnimation(this.ImagesDeadChickenBaby);
             // this.speedY = 0;
             // this.y - 160;
-            // this.applyGravity();
+            // this.applyGravity(0);
 
         }
         else if (this.chickenFly()) {

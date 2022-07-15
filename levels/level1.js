@@ -4,7 +4,6 @@ function initLevel() {
 
     return new Level(
         [
-            new Fence('./img/5_background/fence.png', -650),
             // new Chiken(),
             // new Chiken(),
             new Chiken()
@@ -63,7 +62,10 @@ function initLevel() {
             new Bottle(600, 380)
         ],
         [
-            new Sombrero(-200, 390)
+            // new Sombrero(600, 150)
+        ],
+        [
+            new Frog()
         ]
     );
 

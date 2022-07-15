@@ -18,10 +18,12 @@ class MovableObject extends DrawableObject {
     lastHitBoss = 0;
     damage = 100;
 
-    applyGravity() {
+    applyGravity(isX) {
+        if (isX == 'underfined') { isX = 0 }
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
+                this.x -= isX;
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
@@ -33,6 +35,8 @@ class MovableObject extends DrawableObject {
             // this instanceof Chiken ||
             this instanceof EndBoss) {
             return true;
+        } else if (this instanceof Sombrero) {
+            return this.y < 150;
         } else if (this instanceof Chiken) {
             return this.y < 355;
         }
@@ -40,6 +44,20 @@ class MovableObject extends DrawableObject {
             return this.y < 155;
         }
     };
+
+
+
+    gravitySombrero() {
+        if (Math.random() < 0.4 && !this.isAboveGround()) {
+            this.acceleration = 0.7;
+            this.speedY = 10;
+        }
+        else {
+            setInterval(() => {
+                this.x -= 1;
+            }, 1000 / 25);
+        }
+    }
 
 
     stopPunch = 0;
@@ -80,6 +98,7 @@ class MovableObject extends DrawableObject {
 
     }
 
+
     lastFly = 0;
     jumpHeight = 10;
     flyFast = 0;
@@ -88,15 +107,13 @@ class MovableObject extends DrawableObject {
         this.speedY = this.jumpHeight;
     }
     randomBounce() {
-        this.acceleration = 0.1 + Math.random() * 6;
-        if (Math.random() < 0.03 && !this.isAboveGround()) {
+        this.acceleration = 1.1 + Math.random() * 6;
+        if (Math.random() < 0.02 && !this.isAboveGround()) {
             this.jump();
             this.flyChickenLeft();
             this.lastFly = new Date().getTime();
         }
     }
-
-
     flyChickenLeft() {
         let stopPunchInterval = setInterval(() => {
             if (this.flyFast < 10) {

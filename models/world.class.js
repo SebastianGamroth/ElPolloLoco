@@ -54,6 +54,8 @@ class World {
             this.createClouds();
             this.createNewChicken();
             this.characterBlockPunch();
+            this.createNewSombrero();
+
 
             // this.hickenFly()
 
@@ -139,6 +141,18 @@ class World {
         if (this.level.enemies.length <= 3) {
             this.level.enemies.push(new Chiken);
         }
+    }
+
+    createNewSombrero() {
+        if (this.level.sombrero.length < 1) {
+            this.level.sombrero.push(new Sombrero(900, 150));
+        }
+
+        this.level.sombrero.forEach((value, index) => {
+            if (value.x < 50) {
+                this.level.sombrero.splice(index, 1);
+            }
+        });
     }
 
 
@@ -332,6 +346,8 @@ class World {
         if (this.keyboard.DOWN && this.character.energyBlock > 0) {
             this.character.isCharacterBlock();
             this.characterIsSave = true;
+
+            this.enemiesStopAnimate();
         } else {
             this.characterIsSave = false;
         }
@@ -390,6 +406,7 @@ class World {
         this.addToMap(this.character);
 
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.frog);
         this.addObjectsToMap(this.level.enemieBoss);
         this.addToMap(this.statusBarBoss);
         this.addObjectsToMap(this.chickenBabys);
