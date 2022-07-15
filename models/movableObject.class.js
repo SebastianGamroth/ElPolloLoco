@@ -227,6 +227,17 @@ class MovableObject extends DrawableObject {
 
 
 
+    lastHitFrog;
+    frogCatch() {
+        this.lastHitFrog = new Date().getTime();
+    }
+    frogCatchChicken() {
+        let timepassed = new Date().getTime() - this.lastHitFrog;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.4;
+    }
+
+
     chickenBaby = false;
     ischikenBabyDead() {
         this.chickenBaby = true;

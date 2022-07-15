@@ -195,15 +195,16 @@ class Character extends MovableObject {
 
         let cam;
         if (this.x < 20) { cam = 450; }
+        else { cam = 100 }
 
 
-        if (this.OnTreeTrunk()) {
-            // console.log('onTree')
-            // this.y = 20;
+        // if (this.OnTreeTrunk()) {
+        //     // console.log('onTree')
+        //     // this.y = 20;
 
-        } else {
-            // this.y < 155;
-        }
+        // } else {
+        //     // this.y < 155;
+        // }
 
 
         if (cam == 'undefined') { cam = 100 }

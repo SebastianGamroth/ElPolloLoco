@@ -56,12 +56,16 @@ class World {
             this.characterBlockPunch();
             this.createNewSombrero();
             this.frogCatchesChicken();
-            this.jumpToTreeTrunk();
+            // this.jumpToTreeTrunk();
 
             // this.hickenFly()
 
             this.gameOver();
         }, 200);
+
+        setInterval(() => {
+            this.jumpToTreeTrunk();
+        }, 60);
     }
 
 
@@ -331,6 +335,7 @@ class World {
     frogCatchesChicken() {
         this.level.enemies.forEach((enemy, index) => {
             if (enemy.isColliding(this.level.frog[0])) {
+                this.level.frog[0].frogCatch();
                 this.level.enemies.splice(index, 1);
             }
         });
