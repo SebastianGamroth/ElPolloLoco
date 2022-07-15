@@ -19,7 +19,7 @@ class MovableObject extends DrawableObject {
     damage = 100;
 
     applyGravity(isX) {
-        if (isX == 'underfined') { isX = 0 }
+        if (isX == 'undefined') { isX = 0 }
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;

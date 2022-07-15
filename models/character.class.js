@@ -196,6 +196,9 @@ class Character extends MovableObject {
         let cam;
         if (this.x < 20) {
             cam = 450;
+
+            // this.y=40;
+            // this.applyGravity(50);
         }
 
 

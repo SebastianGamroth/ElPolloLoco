@@ -1,9 +1,9 @@
 class Frog extends MovableObject {
 
     offsetX = 20;
-    offsetY = 80;
-    offsetW = 70;
-    offsetH = 100;
+    offsetY = 10;
+    offsetW = 20;
+    offsetH = 10;
 
     width = 428;
     height = 200;

@@ -23,7 +23,9 @@ class DrawableObject {
             this instanceof Coins || 
             this instanceof Bottle || 
             this instanceof EndBoss||
-            this instanceof Sombrero) {
+            this instanceof Sombrero||
+            this instanceof Frog||
+            this instanceof TreeTrunk) {
             ctx.beginPath();
             ctx.lineWidth = '1';
             ctx.strokeStyle = 'blue';

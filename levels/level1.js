@@ -66,6 +66,9 @@ function initLevel() {
         ],
         [
             new Frog()
+        ],
+        [
+            new TreeTrunk()
         ]
     );
 

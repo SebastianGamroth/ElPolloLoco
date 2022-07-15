@@ -55,7 +55,8 @@ class World {
             this.createNewChicken();
             this.characterBlockPunch();
             this.createNewSombrero();
-
+            this.frogCatchesChicken();
+            this.jumpToTreeTrunk();
 
             // this.hickenFly()
 
@@ -103,7 +104,7 @@ class World {
                 // this.characterStopAnimate();
                 this.stopMove();
                 // this.onceOver = setTimeout(this.stopMove.bind(this), 100);
-                this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
+                // this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
             }
         }
     }
@@ -149,7 +150,7 @@ class World {
         }
 
         this.level.sombrero.forEach((value, index) => {
-            if (value.x < 50) {
+            if (value.x < -600) {
                 this.level.sombrero.splice(index, 1);
             }
         });
@@ -164,6 +165,12 @@ class World {
     //         }
     //     });
     // }
+
+    jumpToTreeTrunk() {
+        if (this.level.treeTrunk[0].isColliding(this.character)) {
+            console.log('colide')
+        }
+    }
 
 
     chickenEndAndRemove() {
@@ -307,6 +314,14 @@ class World {
     }
 
 
+    frogCatchesChicken() {
+        this.level.enemies.forEach((enemy, index) => {
+            if (enemy.isColliding(this.level.frog[0])) {
+                this.level.enemies.splice(index, 1);
+            }
+        });
+    }
+
 
 
 
@@ -347,7 +362,7 @@ class World {
             this.character.isCharacterBlock();
             this.characterIsSave = true;
 
-            this.enemiesStopAnimate();
+            // this.enemiesStopAnimate();
         } else {
             this.characterIsSave = false;
         }
@@ -402,11 +417,12 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjects);
         // this.addObjectsToMap(this.newCloud);
         this.addObjectsToMap(this.level.clouds);
-
+        this.addObjectsToMap(this.level.treeTrunk);
         this.addToMap(this.character);
 
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.frog);
+
         this.addObjectsToMap(this.level.enemieBoss);
         this.addToMap(this.statusBarBoss);
         this.addObjectsToMap(this.chickenBabys);
@@ -454,7 +470,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
