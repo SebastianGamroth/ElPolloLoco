@@ -4,9 +4,9 @@ function initLevel() {
 
     return new Level(
         [
-            // new Chiken(),
-            // new Chiken(),
-            new Chiken()
+            new Chiken(1100),
+            new Chiken(900),
+            new Chiken(700)
         ],
         [
             new EndBoss()

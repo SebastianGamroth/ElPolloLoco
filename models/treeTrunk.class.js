@@ -1,9 +1,9 @@
 class TreeTrunk extends MovableObject {
 
-    offsetX = 5;
+    offsetX = 20;
     offsetY = 40;
-    offsetW = 10;
-    offsetH = 50;
+    offsetW = 40;
+    offsetH = 190;
 
     width = 85;
     height = 200;

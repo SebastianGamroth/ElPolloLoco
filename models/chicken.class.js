@@ -43,7 +43,7 @@ class Chiken extends MovableObject {
     ];
 
 
-    constructor() {
+    constructor(x) {
         super().loadImage(this.ImagesWalking[0]);
         this.loadImages(this.ImagesWalking);
         this.loadImages(this.ImagesChickenFly);
@@ -51,7 +51,9 @@ class Chiken extends MovableObject {
         this.loadImages(this.ImagesDeadChicken);
         this.loadImages(this.ImagesDeadChickenBaby);
 
-        this.x = 400 + Math.random() * 500; // 200-700
+        this.x = x;
+
+        x = x + Math.random() * 500; // 200-700
         this.speed = 0.4 + Math.random() * 0.5;
 
         // this.jumpHeight= 5;

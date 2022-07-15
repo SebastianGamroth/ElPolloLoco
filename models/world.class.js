@@ -103,7 +103,7 @@ class World {
 
                 // this.characterStopAnimate();
                 this.stopMove();
-                // this.onceOver = setTimeout(this.stopMove.bind(this), 100);
+                this.onceOver = setTimeout(this.stopMove.bind(this), 100);
                 // this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
             }
         }
@@ -140,7 +140,8 @@ class World {
 
     createNewChicken() {
         if (this.level.enemies.length <= 3) {
-            this.level.enemies.push(new Chiken);
+
+            this.level.enemies.push(new Chiken(1100));
         }
     }
 
@@ -167,8 +168,21 @@ class World {
     // }
 
     jumpToTreeTrunk() {
-        if (this.level.treeTrunk[0].isColliding(this.character)) {
-            console.log('colide')
+        if (this.level.treeTrunk[0].isColliding(this.character) &&
+            this.character.y + this.character.height < 320) {
+
+            // console.log(this.character.y + this.character.height)
+
+            // console.log((this.character.y + this.character.offsetY) +
+            //     (this.character.height - this.character.offsetH))
+
+            // console.log(this.level.treeTrunk[0].y + this.level.treeTrunk[0].offsetY)
+            this.character.valueY = -60;
+            this.character.isOnTreeTrunk();
+        }
+        else {
+            this.character.valueY = 155;
+            this.character.isNotOnTreeTrunk();
         }
     }
 
@@ -362,7 +376,7 @@ class World {
             this.character.isCharacterBlock();
             this.characterIsSave = true;
 
-            // this.enemiesStopAnimate();
+            this.enemiesStopAnimate();
         } else {
             this.characterIsSave = false;
         }

@@ -18,17 +18,20 @@ class MovableObject extends DrawableObject {
     lastHitBoss = 0;
     damage = 100;
 
-    applyGravity(isX) {
-        if (isX == 'undefined') { isX = 0 }
+    applyGravity(valueX) {
+        if (valueX == 'undefined') { valueX = 0 }
+
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
-                this.x -= isX;
+                this.x -= valueX;
                 this.speedY -= this.acceleration;
             }
         }, 1000 / 25);
     };
 
+
+    valueY = 155;
     isAboveGround() {
         if (this instanceof ThrowableObject ||
             this instanceof ChikenBabys ||
@@ -41,7 +44,7 @@ class MovableObject extends DrawableObject {
             return this.y < 355;
         }
         else {
-            return this.y < 155;
+            return this.y < this.valueY;
         }
     };
 
@@ -193,6 +196,17 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastBlock;
         timepassed = timepassed / 1000;
         return timepassed < 0.4;
+    }
+
+    treeTrunk = false;
+    isNotOnTreeTrunk() {
+        this.treeTrunk = false;
+    }
+    isOnTreeTrunk() {
+        this.treeTrunk = true;
+    }
+    OnTreeTrunk() {
+        return this.treeTrunk;
     }
 
 
