@@ -23,6 +23,7 @@ canvas {
 }
 
 .start {
+    z-index: 1;
     display: flex;
     justify-content: center;
     position: absolute;
@@ -178,6 +179,8 @@ h3 {
 }
 
 .mobileContainer {
+    display: none !important;
+
     position: absolute;
     bottom: 0px;
     /* z-index: 1; */

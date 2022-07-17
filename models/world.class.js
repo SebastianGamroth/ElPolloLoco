@@ -17,6 +17,7 @@ class World {
     throwableObject = [];
     // newCloud = [];
     gameOverScreenArray = [];
+    characterIsSave = false;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -113,7 +114,7 @@ class World {
                 // this.characterStopAnimate();
                 this.stopMove();
                 this.onceOver = setTimeout(this.stopMove.bind(this), 100);
-                // this.onceOver = setTimeout(this.startScreen.bind(this), 1000);
+                this.onceOver = setTimeout(this.startScreen.bind(this), 2000);
             }
         }
     }
@@ -151,18 +152,18 @@ class World {
     backgroundPosition() {
         if (this.keyboard.LEFT && this.character.x > 470) {
             this.level.backgroundObjectsLayer_2.forEach((element2) => {
-                element2.x += (this.character.x / 1600);
-            });
-            this.level.backgroundObjectsLayer_3.forEach((element3) => {
-                element3.x += (this.character.x / 1200);
-            });
-        }
-        if (this.keyboard.RIGHT && this.character.x < this.level.levelEndX) {
-            this.level.backgroundObjectsLayer_2.forEach((element2) => {
                 element2.x -= (this.character.x / 1600);
             });
             this.level.backgroundObjectsLayer_3.forEach((element3) => {
                 element3.x -= (this.character.x / 1200);
+            });
+        }
+        if (this.keyboard.RIGHT && this.character.x < this.level.levelEndX) {
+            this.level.backgroundObjectsLayer_2.forEach((element2) => {
+                element2.x += (this.character.x / 1600);
+            });
+            this.level.backgroundObjectsLayer_3.forEach((element3) => {
+                element3.x += (this.character.x / 1200);
             });
         }
     }
@@ -335,8 +336,15 @@ class World {
         this.chickenBabys.forEach((enemy, id) => {
             if (enemy.isColliding(this.character)) {
                 this.chickenBabys.splice(id, 1);
-                this.character.hit();
-                this.statusBarHealth.setPercentage(this.character.energy);
+
+                if (!this.characterIsSave) {
+                    this.character.hit();
+                    this.statusBarHealth.setPercentage(this.character.energy);
+                } else {
+                    this.character.hitIsSave();
+                    this.StatusBarBlockEnergy.setPercentage(this.character.energyBlock);
+                }
+
             }
         });
     }
@@ -417,8 +425,6 @@ class World {
     }
 
 
-    characterIsSave = false;
-
     chickenCollisionCharacter() {
         this.level.enemies.forEach((enemy) => {
             if (enemy.isColliding(this.character)) {
@@ -441,7 +447,7 @@ class World {
             this.character.isCharacterBlock();
             this.characterIsSave = true;
 
-            this.enemiesStopAnimate();
+            // this.enemiesStopAnimate();
         } else {
             this.characterIsSave = false;
         }
@@ -558,7 +564,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        mo.drawFrame(this.ctx);
+        // mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
