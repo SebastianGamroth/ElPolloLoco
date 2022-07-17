@@ -25,7 +25,7 @@ class ThrowableObject extends MovableObject {
         this.loadImages(this.ImagesSplash);
         this.x = x;
         this.y = y;
-        this.height = 60;
+        this.height = 50;
         this.width = 50;
         this.timer = timer;
         // this.throw();
@@ -54,7 +54,7 @@ class ThrowableObject extends MovableObject {
     animate() {
         this.startMoveTo();
 
-        this.speedY = 25;
+        this.speedY = 20;
         this.applyGravity(0);
 
         // setInterval(() => {
@@ -84,7 +84,7 @@ class ThrowableObject extends MovableObject {
         clearInterval(this.moveToInterval);
     }
     moveTo() {
-        this.x += 8;
+        this.x += 5;
     }
 
 }

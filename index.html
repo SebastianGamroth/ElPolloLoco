@@ -12,13 +12,14 @@
 
     <script src="./models/world.class.js"></script>
     <script src="./models/drawableObject.class.js"></script>
+    <script src="./models/movableObject.class.js"></script>
+    <script src="./models/statusBar.class.js"></script>
     <script src="./models/statusBarThrowEnergie.class.js"></script>
     <script src="./models/statusBarBlock.class.js"></script>
     <script src="./models/statusBarBottle.class.js"></script>
     <script src="./models/statusBarHealth.class.js"></script>
     <script src="./models/statusBarCoins.class.js"></script>
     <script src="./models/statusBarBoss.class.js"></script>
-    <script src="./models/movableObject.class.js"></script>
     <script src="./models/character.class.js"></script>
     <script src="./models/chicken.class.js"></script>
     <script src="./models/chickenBabys.class.js"></script>
@@ -29,7 +30,14 @@
     <script src="./models/cloud.class.js"></script>
     <script src="./models/frog.class.js"></script>
     <script src="./models/treeTrunk.class.js"></script>
-    <script src="./models/backgroundObject.class.js"></script>
+    <script src="./models/store.class.js"></script>
+    <script src="./models/barrel.class.js"></script>
+    <script src="./models/store1bar.class.js"></script>
+    <script src="./models/store2bar.class.js"></script>
+    <script src="./models/backgroundAir.class.js"></script>
+    <script src="./models/backgroundObjectLayer1.class.js"></script>
+    <script src="./models/backgroundObjectLayer2.class.js"></script>
+    <script src="./models/backgroundObjectLayer3.class.js"></script>
     <script src="./models/key.class.js"></script>
     <script src="./models/level.class.js"></script>
     <script src="./models/endBoss.class.js"></script>
@@ -110,9 +118,37 @@
 
     </div>
 
-    <h1>El Pollo Loco</h1>
+    <!-- <h1>El Pollo Loco</h1> -->
 
-    <canvas id="canvas" width="720px" height="480px"></canvas>
+    <div id="gameContainer" class="gameContainer d-none">
+        <div class="canvasNav">
+            <button class="btnStart" onclick="startBack()">↺</button>
+            <button class="btnStart" onclick="startFullscreen()">⛶</button>
+        </div>
+
+        <canvas id="canvas" width="720px" height="480px"></canvas>
+
+        <div class="mobileContainer">
+            <div class="mobileKeys">
+                <button id="btnThrow">
+                    <h3>↑</h3>
+                </button>
+                <button id="btnLeft">
+                    <h3>←</h3>
+                </button>
+                <button id="btnRight">
+                    <h3>→</h3>
+                </button>
+                <button id="btnBlock">
+                    <h3>↓</h3>
+                </button>
+                <button id="btnJump">
+                    <h3 class="space">SPACE</h3>
+                </button>
+            </div>
+        </div>
+
+    </div>
 
     <div class="btnBox" id="btnStart">
         <button class="btnStart" onclick="start()">PLAY</button>

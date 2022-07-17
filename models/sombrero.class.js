@@ -26,8 +26,8 @@ class Sombrero extends MovableObject {
 
         this.x = x;
         this.y = y;
-        this.width = 80;
-        this.height = 80;
+        this.width = 60;
+        this.height = 60;
 
         this.y = 165;
         // this.x = 400 + Math.random() * 500; // 200-700

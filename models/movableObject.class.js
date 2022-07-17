@@ -13,7 +13,7 @@ class MovableObject extends DrawableObject {
     energyBoss = 100;
     energyThrow = 60;
     coin = 0;
-    bottle = 0;
+    bottle = 100;
     lastHit = 0;
     lastHitBoss = 0;
     damage = 100;
@@ -31,7 +31,7 @@ class MovableObject extends DrawableObject {
     };
 
 
-    valueY = 155;
+    valueY = 105;
     isAboveGround() {
         if (this instanceof ThrowableObject ||
             this instanceof ChikenBabys ||
@@ -41,11 +41,15 @@ class MovableObject extends DrawableObject {
         } else if (this instanceof Sombrero) {
             return this.y < 150;
         } else if (this instanceof Chiken) {
-            return this.y < 355;
+            return this.y < 385;
         }
-        else {
+        else if (this instanceof Character) {
             return this.y < this.valueY;
         }
+        // else {
+        //     // console.log(this.valueY)
+        //     return this.y < this.valueY;
+        // }
     };
 
 
@@ -198,15 +202,26 @@ class MovableObject extends DrawableObject {
         return timepassed < 0.4;
     }
 
-    treeTrunk = false;
-    isNotOnTreeTrunk() {
-        this.treeTrunk = false;
+    storeBar = false;
+    aboutStore() {
+        this.storeBar = true;
+     }
+    underStore() {
+        this.storeBar = false;
     }
-    isOnTreeTrunk() {
-        this.treeTrunk = true;
+    isOrNotAboutStore() {
+        return this.storeBar;
     }
-    OnTreeTrunk() {
-        return this.treeTrunk;
+
+    storeBar2 = false;
+    aboutStore2() {
+        this.storeBar2 = true;
+     }
+    underStore2() {
+        this.storeBar2 = false;
+    }
+    isOrNotAboutStore2() {
+        return this.storeBar2;
     }
 
 
@@ -252,7 +267,7 @@ class MovableObject extends DrawableObject {
         this.coin += 20;
     }
     hitBottle() {
-        this.bottle += 20;
+        this.bottle -= 20;
     }
     hitSombrero() {
         this.energyBlock += 20;
@@ -303,6 +318,6 @@ class MovableObject extends DrawableObject {
     }
 
     jump() {
-        this.speedY = 30;
+        this.speedY = 20;
     }
 }

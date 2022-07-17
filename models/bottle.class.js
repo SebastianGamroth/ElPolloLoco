@@ -1,8 +1,8 @@
 class Bottle extends MovableObject {
-    offsetX = 45;
-    offsetY = 20;
-    offsetW = 60;
-    offsetH = 30;
+    offsetX = 23;
+    offsetY = 10;
+    offsetW = 33;
+    offsetH = 15;
 
 
     Images1 = [
@@ -19,8 +19,8 @@ class Bottle extends MovableObject {
 
         this.x = x;
         this.y = y;
-        this.width = 100;
-        this.height = 100;
+        this.width = 50;
+        this.height = 50;
 
         // this.setPercentage(percentage);
     };

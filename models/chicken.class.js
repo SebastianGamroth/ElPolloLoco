@@ -2,14 +2,14 @@ class Chiken extends MovableObject {
 
 
     offsetX = 5;
-    offsetY = 8;
+    offsetY = 5;
     offsetW = 10;
-    offsetH = 20;
+    offsetH = 15;
 
 
-    height = 60;
-    width = 61;
-    y = 370;
+    height = 40;
+    width = 41;
+    y = 375;
 
 
     ImagesBaby = [
@@ -58,7 +58,7 @@ class Chiken extends MovableObject {
 
         // this.jumpHeight= 5;
         // this.jumpHeight = Math.random() * 10;
-        this.applyGravity(10);
+        this.applyGravity(5);
         this.animate();
     };
 

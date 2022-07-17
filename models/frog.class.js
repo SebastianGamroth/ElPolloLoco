@@ -8,6 +8,7 @@ class Frog extends MovableObject {
     width = 428;
     height = 200;
     y = 280;
+    x = 150;
 
 
     ImagesWait = [
@@ -31,7 +32,6 @@ class Frog extends MovableObject {
         this.loadImages(this.ImagesWait);
         this.loadImages(this.ImagesToCatch);
 
-        this.x = -700;
         this.animate();
     }
 
@@ -61,7 +61,7 @@ class Frog extends MovableObject {
 
         if (this.frogCatchChicken()) {
             this.playAnimation(this.ImagesToCatch);
-        } 
+        }
         // else if (this.frogHypnoise()) {
         //     this.frogSound.play();
         // } 

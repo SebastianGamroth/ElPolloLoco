@@ -4,9 +4,9 @@ function initLevel() {
 
     return new Level(
         [
-            new Chiken(1100),
-            new Chiken(900),
-            new Chiken(700)
+            new Chiken(4100),
+            new Chiken(3500),
+            new Chiken(3000)
         ],
         [
             new EndBoss()
@@ -22,44 +22,62 @@ function initLevel() {
             new Cloud(2800)
         ],
         [
-            new BackgroundObject('./img/5_background/layers/air.png', -719),
-            new BackgroundObject('./img/5_background/layers/3_third_layer/2.png', -719),
-            new BackgroundObject('./img/5_background/layers/2_second_layer/2.png', -719),
-            new BackgroundObject('./img/5_background/layers/1_first_layer/2.png', -719),
-
             new BackgroundObject('./img/5_background/layers/air.png', 0),
-            new BackgroundObject('./img/5_background/layers/3_third_layer/1.png', 0),
-            new BackgroundObject('./img/5_background/layers/2_second_layer/1.png', 0),
-            new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 0),
-
             new BackgroundObject('./img/5_background/layers/air.png', 719),
-            new BackgroundObject('./img/5_background/layers/3_third_layer/2.png', 719),
-            new BackgroundObject('./img/5_background/layers/2_second_layer/2.png', 719),
-            new BackgroundObject('./img/5_background/layers/1_first_layer/2.png', 719),
-
             new BackgroundObject('./img/5_background/layers/air.png', 719 * 2),
-            new BackgroundObject('./img/5_background/layers/3_third_layer/1.png', 719 * 2),
-            new BackgroundObject('./img/5_background/layers/2_second_layer/1.png', 719 * 2),
-            new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 719 * 2),
-
             new BackgroundObject('./img/5_background/layers/air.png', 719 * 3),
-            new BackgroundObject('./img/5_background/layers/3_third_layer/2.png', 719 * 3),
-            new BackgroundObject('./img/5_background/layers/2_second_layer/2.png', 719 * 3),
-            new BackgroundObject('./img/5_background/layers/1_first_layer/2.png', 719 * 3)
+            new BackgroundObject('./img/5_background/layers/air.png', 719 * 4),
+            new BackgroundObject('./img/5_background/layers/air.png', 719 * 5),
+            new BackgroundObject('./img/5_background/layers/air.png', 719 * 6),
+            new BackgroundObject('./img/5_background/layers/air.png', 719 * 7)
         ],
         [
-            new Coins(0, 100),
-            new Coins(300, 100),
-            new Coins(400, 100),
-            new Coins(500, 100),
-            new Coins(600, 100)
+            new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 0),
+            new BackgroundObject('./img/5_background/layers/1_first_layer/2.png', 719),
+            new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 719 * 2),
+            new BackgroundObject('./img/5_background/layers/1_first_layer/2.png', 719 * 3),
+            new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 719 * 4),
+            new BackgroundObject('./img/5_background/layers/1_first_layer/2.png', 719 * 5),
+            new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 719 * 6),
+            new BackgroundObject('./img/5_background/layers/1_first_layer/2.png', 719 * 7)
         ],
         [
-            new Bottle(0, 380),
-            new Bottle(300, 380),
-            new Bottle(400, 380),
-            new Bottle(500, 380),
-            new Bottle(600, 380)
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/2.png', -719),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/1.png', 0),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/2.png', 719),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/1.png', 719 * 2),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/2.png', 719 * 3),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/1.png', 719 * 4),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/2.png', 719 * 5),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/1.png', 719 * 6),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/2.png', 719 * 7),
+            new backgroundObjectsLayers_2('./img/5_background/layers/2_second_layer/1.png', 719 * 8)
+        ],
+        [
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/2.png', -719),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/1.png', 0),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/2.png', 719),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/1.png', 719 * 2),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/2.png', 719 * 3),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/1.png', 719 * 4),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/2.png', 719 * 5),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/1.png', 719 * 6),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/2.png', 719 * 7),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/1.png', 719 * 8),
+            new backgroundObjectsLayers_3('./img/5_background/layers/3_third_layer/2.png', 719 * 9)
+        ],
+        [
+            new Coins(1420, 70),
+            new Coins(1450, 70),
+            new Coins(1250, 70),
+            new Coins(1285, 70)
+        ],
+        [
+            new Bottle(1200, 160),
+            new Bottle(1250, 160),
+            new Bottle(1300, 160),
+            new Bottle(1350, 160),
+            new Bottle(1400, 160)
         ],
         [
             // new Sombrero(600, 150)
@@ -69,6 +87,21 @@ function initLevel() {
         ],
         [
             new TreeTrunk()
+        ],
+        [
+            new StoreFirst('./img/13_store/store.png', 1200),
+            new StoreFirst('./img/13_store/store2.png', 800)
+        ],
+        [
+            new StoreFirstBar()
+        ],
+        [
+            new Store2Bar()
+        ],
+        [
+            new Barrel(1650, 365),
+            new Barrel(1650, 310),//980-310
+            new Barrel(1750, 365)
         ]
     );
 

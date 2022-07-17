@@ -1,12 +1,13 @@
 class Character extends MovableObject {
-    height = 280;
+    height = 200;
+    width = 102;
     y = 55;
     speed = 10;
 
     offsetX = 20;
-    offsetY = 110;
+    offsetY = 95;
     offsetW = 50;
-    offsetH = 120;
+    offsetH = 105;
 
     conter = 1;
 
@@ -81,6 +82,7 @@ class Character extends MovableObject {
     walkingSound = new Audio('./audio/running.mp3');
     punchSound = new Audio('./audio/punch.mp3');
 
+    x = 2200;
     constructor() {
         super().loadImage(this.ImagesWalking[0]);
         this.loadImages(this.ImagesWalking);
@@ -182,7 +184,7 @@ class Character extends MovableObject {
             this.walkingSound.play();
         }
 
-        if (this.world.keyboard.LEFT && this.x > -610) {
+        if (this.world.keyboard.LEFT && this.x > 470) {
             this.moveLeft();
             this.otherDirection = true;
             this.walkingSound.play();
@@ -194,7 +196,7 @@ class Character extends MovableObject {
 
 
         let cam;
-        if (this.x < 20) { cam = 450; }
+        if (this.x < 2150) { cam = 450; }
         else { cam = 100 }
 
 

@@ -38,7 +38,7 @@ class World {
     run() {
         setInterval(() => {
             this.chickenCollisionCharacter();
-            this.chickenBabyCollisionCharacter();
+            // this.chickenBabyCollisionCharacter();
             this.charackterPickUpCoins();
             this.charackterPickUpBottle();
             this.charackterPickUpSombrero();
@@ -58,14 +58,19 @@ class World {
             this.frogCatchesChicken();
             // this.jumpToTreeTrunk();
 
+
             // this.hickenFly()
 
             this.gameOver();
         }, 200);
 
         setInterval(() => {
-            this.jumpToTreeTrunk();
-        }, 60);
+            // this.jumpToStore1Bare();
+            this.jumpToBarrel();
+            this.backgroundPosition();
+
+            this.chickenBabyCollisionCharacter();
+        }, 1000 / 60);
     }
 
 
@@ -134,6 +139,7 @@ class World {
 
 
     cloudsEndAndRemove() {
+        this.level
         this.level.clouds.forEach((enemy, index) => {
             if (enemy.x < -1200) {
                 // enemy.splice(index, 1);
@@ -142,10 +148,29 @@ class World {
         });
     }
 
+    backgroundPosition() {
+        if (this.keyboard.LEFT && this.character.x > 470) {
+            this.level.backgroundObjectsLayer_2.forEach((element2) => {
+                element2.x += (this.character.x / 1600);
+            });
+            this.level.backgroundObjectsLayer_3.forEach((element3) => {
+                element3.x += (this.character.x / 1200);
+            });
+        }
+        if (this.keyboard.RIGHT && this.character.x < this.level.levelEndX) {
+            this.level.backgroundObjectsLayer_2.forEach((element2) => {
+                element2.x -= (this.character.x / 1600);
+            });
+            this.level.backgroundObjectsLayer_3.forEach((element3) => {
+                element3.x -= (this.character.x / 1200);
+            });
+        }
+    }
+
     createNewChicken() {
         if (this.level.enemies.length <= 3) {
 
-            this.level.enemies.push(new Chiken(1100));
+            this.level.enemies.push(new Chiken(3500));
         }
     }
 
@@ -171,23 +196,57 @@ class World {
     //     });
     // }
 
-    jumpToTreeTrunk() {
-        if (this.level.treeTrunk[0].isColliding(this.character) &&
-            this.character.y + this.character.height < 320) {
+    // jumpToStore1Bare() {
+    //     if (this.character.isColliding(this.level.storeFirstBar[0])) {
+    //         this.character.valueY = 90;
+    //         console.log('stre')
+    //     }
+    //     else {
+    //         this.character.valueY = 235;
+    //         this.character.isNotOnTreeTrunk();
+    //     }
+    // }
 
-            // console.log(this.character.y + this.character.height)
+    jumpToBarrel() {
 
-            // console.log((this.character.y + this.character.offsetY) +
-            //     (this.character.height - this.character.offsetH))
-
-            // console.log(this.level.treeTrunk[0].y + this.level.treeTrunk[0].offsetY)
-            this.character.valueY = -60;
-            this.character.isOnTreeTrunk();
+        if (this.character.isColliding(this.level.barrel[1])) {
+            this.character.valueY = 130;
+            // console.log('1')
+        }
+        else if (this.level.barrel[2].isColliding(this.character)) {
+            this.character.valueY = 180;
+            // console.log('2')
+        }
+        else if (this.character.isColliding(this.level.barrel[0])) {
+            this.character.valueY = 180;
+            // console.log('0')
+        }
+        else if (this.character.isColliding(this.level.storeFirstBar[0])) {
+            this.character.valueY = 55;
+            this.level.storeFirstBar[0].aboutStore();
+        }
+        else if (this.character.isColliding(this.level.store2Bar[0])) {
+            this.character.valueY = 55;
+            this.level.store2Bar[0].aboutStore2();
         }
         else {
-            this.character.valueY = 155;
-            this.character.isNotOnTreeTrunk();
+            this.character.valueY = 235;
+            this.level.storeFirstBar[0].underStore();
+            this.level.store2Bar[0].underStore2();
         }
+
+
+
+        // this.level.barrel.forEach((element) => {
+
+        //     if (element.isColliding(this.character)) {
+
+        //         this.character.valueY = 180;
+        //     }
+        //     else {
+        //         this.character.valueY = 235;
+        //     }
+        // });
     }
 
 
@@ -273,8 +332,9 @@ class World {
 
 
     chickenBabyCollisionCharacter() {
-        this.chickenBabys.forEach((enemy) => {
+        this.chickenBabys.forEach((enemy, id) => {
             if (enemy.isColliding(this.character)) {
+                this.chickenBabys.splice(id, 1);
                 this.character.hit();
                 this.statusBarHealth.setPercentage(this.character.energy);
             }
@@ -310,7 +370,7 @@ class World {
 
 
     characterThrowsBottle() {
-        if (this.character.bottle > 0) {
+        if (this.character.bottle < 100) {
 
             if (this.keyboard.UP && this.energyThrow >= 3) {
 
@@ -324,7 +384,7 @@ class World {
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100, timer);
                 this.throwableObject.push(bottle);
 
-                this.character.bottle -= 20;
+                this.character.bottle += 20;
                 this.statusBarBottle.setPercentage(this.character.bottle);
 
             }
@@ -381,7 +441,7 @@ class World {
             this.character.isCharacterBlock();
             this.characterIsSave = true;
 
-            // this.enemiesStopAnimate();
+            this.enemiesStopAnimate();
         } else {
             this.characterIsSave = false;
         }
@@ -433,23 +493,31 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
 
+        this.addObjectsToMap(this.level.backgroundAir);
+        this.addObjectsToMap(this.level.backgroundObjectsLayer_3);
+        this.addObjectsToMap(this.level.backgroundObjectsLayer_2);
         this.addObjectsToMap(this.level.backgroundObjects);
+
+
         // this.addObjectsToMap(this.newCloud);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.treeTrunk);
-        this.addToMap(this.character);
+        this.addObjectsToMap(this.level.storeFirst);
+        this.addObjectsToMap(this.level.barrel);
 
+        this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.frog);
-
         this.addObjectsToMap(this.level.enemieBoss);
-        this.addToMap(this.statusBarBoss);
         this.addObjectsToMap(this.chickenBabys);
 
         this.addObjectsToMap(this.throwableObject);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottle);
         this.addObjectsToMap(this.level.sombrero);
+
+        this.addObjectsToMap(this.level.storeFirstBar);
+        this.addObjectsToMap(this.level.store2Bar);
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------
@@ -458,6 +526,7 @@ class World {
         this.addToMap(this.statusBarBottle);
         this.addToMap(this.statusBarHealth);
         this.addToMap(this.statusBarCoins);
+        this.addToMap(this.statusBarBoss);
 
         this.addObjectsToMap(this.gameOverScreenArray);
         this.ctx.translate(this.camera_x, 0);

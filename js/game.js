@@ -15,7 +15,12 @@ function start() {
     setTimeout(() => {
         document.getElementById('start').classList.add('d-none');
         document.getElementById('btnStart').classList.add('d-none');
+        document.getElementById('gameContainer').classList.remove('d-none');
     }, 400);
+}
+
+function startFullscreen() {
+    canvas.requestFullscreen();
 }
 
 

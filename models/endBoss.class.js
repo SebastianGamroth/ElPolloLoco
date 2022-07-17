@@ -1,13 +1,13 @@
 class EndBoss extends MovableObject {
 
-    offsetX = 20;
-    offsetY = 80;
-    offsetW = 70;
+    offsetX = 30;
+    offsetY = 60;
+    offsetW = 60;
     offsetH = 100;
 
-    width = 343;
-    height = 400;
-    y = 55;
+    width = 258;
+    height = 300;
+    y = 160;
 
     ImagesWalk = [
         './img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -57,7 +57,7 @@ class EndBoss extends MovableObject {
         this.loadImages(this.ImagesAttack);
         this.loadImages(this.ImagesHurt);
         this.loadImages(this.ImagesDead);
-        this.x = 1100; //2400
+        this.x = 3100; //2400
         this.animate();
     }
 

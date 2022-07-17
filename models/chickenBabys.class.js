@@ -1,14 +1,14 @@
 class ChikenBabys extends MovableObject {
 
     offsetX = 5;
-    offsetY = 8;
+    offsetY = 5;
     offsetW = 10;
-    offsetH = 20;
+    offsetH = 15;
 
-    height = 60;
-    width = 61;
+    height = 40;
+    width = 41;
     y = 200;
-    x = 800;
+    x = 3100;
 
     ImagesBaby = [
         './img/3_enemies_chicken/chicken_small/3_rotation/1_w.png',
