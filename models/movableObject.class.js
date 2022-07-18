@@ -301,15 +301,15 @@ class MovableObject extends DrawableObject {
     }
 
 
-    soundFrogBoolean = false;
-    playSoundFrog() {
-        this.soundFrogBoolean = true;
-    }
-    stopSoundFrog() {
-        this.soundFrogBoolean = false;
-    }
+    // soundFrogBoolean = false;
+    // playSoundFrog() {
+    //     this.soundFrogBoolean = true;
+    // }
+    // stopSoundFrog() {
+    //     this.soundFrogBoolean = false;
+    // }
     soundFrog() {
-        return this.soundFrogBoolean;
+        return this.soundFrogBoolean == true;
     }
 
 

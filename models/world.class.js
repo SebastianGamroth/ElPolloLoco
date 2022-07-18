@@ -489,12 +489,14 @@ class World {
     }
 
 
-    soundColision(){
-        if(this.character.x < 900 ){
-            this.character.playSoundFrog();
+    soundColision() {
+        if (this.character.x < 900) {
+            // this.character.playSoundFrog();
+            this.character.soundFrogBoolean = true;
         }
-        if(this.character.x > 900 ){
-            this.character.stopSoundFrog();
+        if (this.character.x > 900) {
+            // this.character.stopSoundFrog();
+            this.character.soundFrogBoolean = false;
         }
     }
 
