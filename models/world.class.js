@@ -39,6 +39,7 @@ class World {
     run() {
         setInterval(() => {
             this.chickenCollisionCharacter();
+            this.endBossCollisionCharacter();
             // this.chickenBabyCollisionCharacter();
             this.charackterPickUpCoins();
             this.charackterPickUpBottle();
@@ -404,7 +405,7 @@ class World {
         let frog = this.level.frog[0];
         this.level.enemies.forEach((enemy, index) => {
             if (enemy.isColliding(frog)) {
-                enemy.soundChickenBoolean=false;
+                enemy.soundChickenBoolean = false;
                 frog.frogCatch();
                 this.level.enemies.splice(index, 1);
             }
@@ -438,9 +439,24 @@ class World {
                     this.character.hitIsSave();
                     this.StatusBarBlockEnergy.setPercentage(this.character.energyBlock);
                 }
-
             }
         });
+    }
+
+    endBossCollisionCharacter() {
+        let boss = this.level.enemieBoss[0];
+
+        if (boss.isColliding(this.character)) {
+
+            if (!this.characterIsSave) {
+                this.character.hit();
+                this.statusBarHealth.setPercentage(this.character.energy);
+            } else {
+                this.character.hitIsSave();
+                this.StatusBarBlockEnergy.setPercentage(this.character.energyBlock);
+            }
+        }
+
     }
 
 
