@@ -177,8 +177,8 @@ class World {
     }
 
     createNewSombrero() {
-        if (this.level.sombrero.length < 1) {
-            this.level.sombrero.push(new Sombrero(900, 150));
+        if (this.level.sombrero.length < 7) {
+            this.level.sombrero.push(new Sombrero(5033, 150));
         }
 
         this.level.sombrero.forEach((value, index) => {

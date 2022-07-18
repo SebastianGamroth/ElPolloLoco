@@ -80,7 +80,13 @@ function initLevel() {
             new Bottle(1400, 160)
         ],
         [
-            // new Sombrero(600, 150)
+            new Sombrero(5033, 150),
+            new Sombrero(4314, 150),
+            new Sombrero(3595, 150),
+            new Sombrero(2876, 150),
+            new Sombrero(2157, 150),
+            new Sombrero(1438, 150),
+            new Sombrero(719, 150)
         ],
         [
             new Frog()

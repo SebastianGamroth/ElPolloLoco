@@ -164,6 +164,7 @@ class MovableObject extends DrawableObject {
     }
 
 
+    energyBlock = 100;
 
     hit() {
         this.energy -= 20;
@@ -188,7 +189,7 @@ class MovableObject extends DrawableObject {
     isDead() {
         return this.energy == 0;
     }
-    energyBlock = 100;
+
     lastBlock;
     isCharacterBlock() {
         if (this.energyBlock > 0) {
@@ -270,7 +271,9 @@ class MovableObject extends DrawableObject {
         this.bottle -= 20;
     }
     hitSombrero() {
-        this.energyBlock += 20;
+        if (this.energyBlock < 100) {
+            this.energyBlock += 20;
+        }
     }
     fillEnergyThrow() {
         this.energyThrow += 20;
@@ -305,10 +308,10 @@ class MovableObject extends DrawableObject {
     soundFrogEyes() {
         return this.soundFrogEyesBoolean;
     }
-    soundFrogEat(){
+    soundFrogEat() {
         return this.soundFrogEatBoolean;
     }
-    soundChicken(){
+    soundChicken() {
         return this.soundChickenBoolean;
     }
 
