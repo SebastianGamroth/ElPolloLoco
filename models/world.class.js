@@ -3,6 +3,7 @@ class World {
 
     // gameOverScreen = new GameOverScreen();
     character = new Character();
+    // frog = new Frog();
     level = initLevel();
     canvas;
     ctx;
@@ -490,14 +491,39 @@ class World {
 
 
     soundColision() {
+        // if (this.character.x < 900) {
+        //     // this.character.playSoundFrog();
+        //     this.character.soundFrogBoolean = true;
+        // }
+        // if (this.character.x > 900) {
+        //     // this.character.stopSoundFrog();
+        //     this.character.soundFrogBoolean = false;
+        // }
+
+        let frog = this.level.frog[0];
+
         if (this.character.x < 900) {
-            // this.character.playSoundFrog();
-            this.character.soundFrogBoolean = true;
+
+            // this.character.soundFrogBoolean = true;
+            // this.frog.soundFrogBoolean = true;
+            frog.soundFrogBoolean = true;
         }
         if (this.character.x > 900) {
+
             // this.character.stopSoundFrog();
-            this.character.soundFrogBoolean = false;
+            // this.frog.soundFrogBoolean = false;
+            frog.soundFrogBoolean = false;
         }
+
+
+
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.x - 200 < enemy.x ||
+                this.character.x + 200 > enemy.x) {
+
+                // console.log('soundChicken')
+            }
+        });
     }
 
 

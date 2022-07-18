@@ -301,6 +301,7 @@ class MovableObject extends DrawableObject {
     }
 
 
+    // soundFrogBoolean;
     // soundFrogBoolean = false;
     // playSoundFrog() {
     //     this.soundFrogBoolean = true;

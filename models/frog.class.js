@@ -25,6 +25,8 @@ class Frog extends MovableObject {
         './img/11_frog/toCatch/frogToCatch_5.png'
     ];
 
+
+
     frogSound = new Audio('./audio/frogEyes.mp3');
 
     constructor() {
@@ -59,15 +61,9 @@ class Frog extends MovableObject {
     moveTo() {
         this.frogSound.pause();
 
-
-
-        console.log('soundFrog ', this.soundFrog())
-
-        // if (this.soundFrog()) {
-        //     this.frogSound.play();
-        //     console.log('ok')
-        // } 
-
+        if (this.soundFrog()) {
+            this.frogSound.play();
+        }
 
         if (this.frogCatchChicken()) {
             this.playAnimation(this.ImagesToCatch);
