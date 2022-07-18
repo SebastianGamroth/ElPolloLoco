@@ -96,8 +96,16 @@ class Chiken extends MovableObject {
 
 
     moveToStep() {
-        // this.walkingSound.pause();
-        // this.flySound.pause();
+        this.walkingSound.pause();
+        this.flySound.pause();
+
+        if (this.soundChicken()) {
+            if (!this.chickenFly()) {
+                this.walkingSound.play();
+            } else {
+                this.flySound.play();
+            }
+        }
 
         if (this.chikenDead()) {
             this.playAnimation(this.ImagesDeadChickenBaby);
@@ -108,7 +116,6 @@ class Chiken extends MovableObject {
         }
         else if (this.chickenFly()) {
             this.playAnimation(this.ImagesChickenFly);
-            // this.flySound.play();
         }
         else if (this.chickenBabyNowBigger()) {
             this.playAnimation(this.ImagesWalking);
@@ -119,7 +126,6 @@ class Chiken extends MovableObject {
             this.playAnimation(this.ImagesBaby);
             // this.walkingSound.play();
         }
+
     }
-
-
 }
