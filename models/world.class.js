@@ -401,9 +401,11 @@ class World {
 
 
     frogCatchesChicken() {
+        let frog = this.level.frog[0];
         this.level.enemies.forEach((enemy, index) => {
-            if (enemy.isColliding(this.level.frog[0])) {
-                this.level.frog[0].frogCatch();
+            if (enemy.isColliding(frog)) {
+                enemy.soundChickenBoolean=false;
+                frog.frogCatch();
                 this.level.enemies.splice(index, 1);
             }
         });
@@ -494,20 +496,20 @@ class World {
         let frog = this.level.frog[0];
 
         if (this.character.x < 900) {
-            frog.soundFrogBoolean = true;
+            frog.soundFrogEyesBoolean = true;
         }
-        if (this.character.x > 900) {
-            frog.soundFrogBoolean = false;
+        else {
+            frog.soundFrogEyesBoolean = false;
         }
-
 
         this.level.enemies.forEach((enemy) => {
             if (this.character.x + 400 > enemy.x &&
                 this.character.x - 300 < enemy.x) {
-                // console.log('soundChicken')
                 enemy.soundChickenBoolean = true;
-            }else{
+                // console.log('true')
+            } else {
                 enemy.soundChickenBoolean = false;
+                // console.log('fale')
             }
         });
     }

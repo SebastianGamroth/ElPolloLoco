@@ -302,8 +302,11 @@ class MovableObject extends DrawableObject {
 
 
 
-    soundFrog() {
-        return this.soundFrogBoolean;
+    soundFrogEyes() {
+        return this.soundFrogEyesBoolean;
+    }
+    soundFrogEat(){
+        return this.soundFrogEatBoolean;
     }
     soundChicken(){
         return this.soundChickenBoolean;
