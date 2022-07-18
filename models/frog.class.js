@@ -60,19 +60,22 @@ class Frog extends MovableObject {
         this.frogSound.pause();
 
 
-        // if (this.frogCatchChicken()) {
-        //     this.playAnimation(this.ImagesToCatch);
-        // }
+
         console.log('soundFrog ', this.soundFrog())
 
-        if (this.soundFrog()) {
-            this.frogSound.play();
-            console.log('ok')
-        } 
-        // else {
-        //     this.playAnimation(this.ImagesWait);
-        //     // this.frogSound.play();
-        // }
+        // if (this.soundFrog()) {
+        //     this.frogSound.play();
+        //     console.log('ok')
+        // } 
+
+
+        if (this.frogCatchChicken()) {
+            this.playAnimation(this.ImagesToCatch);
+        }
+        else {
+            this.playAnimation(this.ImagesWait);
+            // this.frogSound.play();
+        }
 
     }
 }
