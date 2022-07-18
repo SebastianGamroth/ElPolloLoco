@@ -58,7 +58,7 @@ class World {
             this.createNewSombrero();
             this.frogCatchesChicken();
             // this.jumpToTreeTrunk();
-
+            this.soundColision();
 
             // this.hickenFly()
 
@@ -486,6 +486,16 @@ class World {
                 this.level.sombrero.splice(index, 1);
             }
         });
+    }
+
+
+    soundColision(){
+        if(this.character.x < 900 ){
+            this.character.playSoundFrog();
+        }
+        if(this.character.x > 900 ){
+            this.character.stopSoundFrog();
+        }
     }
 
 

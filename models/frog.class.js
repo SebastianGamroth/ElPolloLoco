@@ -25,7 +25,7 @@ class Frog extends MovableObject {
         './img/11_frog/toCatch/frogToCatch_5.png'
     ];
 
-    frogSound = new Audio('./audio/frogSong.mp3');
+    frogSound = new Audio('./audio/frogEyes.mp3');
 
     constructor() {
         super().loadImage(this.ImagesWait[0]);
@@ -57,17 +57,22 @@ class Frog extends MovableObject {
 
 
     moveTo() {
-        // this.frogSound.pause();
+        this.frogSound.pause();
 
-        if (this.frogCatchChicken()) {
-            this.playAnimation(this.ImagesToCatch);
-        }
-        // else if (this.frogHypnoise()) {
-        //     this.frogSound.play();
-        // } 
-        else {
-            this.playAnimation(this.ImagesWait);
-        }
+
+        // if (this.frogCatchChicken()) {
+        //     this.playAnimation(this.ImagesToCatch);
+        // }
+        console.log('soundFrog ', this.soundFrog())
+
+        if (this.soundFrog()) {
+            this.frogSound.play();
+            console.log('ok')
+        } 
+        // else {
+        //     this.playAnimation(this.ImagesWait);
+        //     // this.frogSound.play();
+        // }
 
     }
 }

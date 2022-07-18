@@ -205,7 +205,7 @@ class MovableObject extends DrawableObject {
     storeBar = false;
     aboutStore() {
         this.storeBar = true;
-     }
+    }
     underStore() {
         this.storeBar = false;
     }
@@ -216,7 +216,7 @@ class MovableObject extends DrawableObject {
     storeBar2 = false;
     aboutStore2() {
         this.storeBar2 = true;
-     }
+    }
     underStore2() {
         this.storeBar2 = false;
     }
@@ -298,6 +298,18 @@ class MovableObject extends DrawableObject {
     }
     isBossDead() {
         return this.energyBoss == 0;
+    }
+
+
+    soundFrogBoolean = false;
+    playSoundFrog() {
+        this.soundFrogBoolean = true;
+    }
+    stopSoundFrog() {
+        this.soundFrogBoolean = false;
+    }
+    soundFrog() {
+        return this.soundFrogBoolean;
     }
 
 

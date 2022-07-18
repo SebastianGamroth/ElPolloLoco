@@ -42,6 +42,8 @@ class Chiken extends MovableObject {
         './img/3_enemies_chicken/chicken_small/4_dead/dead.png'
     ];
 
+    walkingSound = new Audio('./audio/chickenRun.mp3');
+    flySound = new Audio('./audio/chickenFly.mp3');
 
     constructor(x) {
         super().loadImage(this.ImagesWalking[0]);
@@ -94,6 +96,8 @@ class Chiken extends MovableObject {
 
 
     moveToStep() {
+        // this.walkingSound.pause();
+        // this.flySound.pause();
 
         if (this.chikenDead()) {
             this.playAnimation(this.ImagesDeadChickenBaby);
@@ -104,13 +108,16 @@ class Chiken extends MovableObject {
         }
         else if (this.chickenFly()) {
             this.playAnimation(this.ImagesChickenFly);
+            // this.flySound.play();
         }
         else if (this.chickenBabyNowBigger()) {
             this.playAnimation(this.ImagesWalking);
+            // this.walkingSound.play();
         }
 
         else {
             this.playAnimation(this.ImagesBaby);
+            // this.walkingSound.play();
         }
     }
 
