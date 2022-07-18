@@ -127,6 +127,19 @@ h3 {
     width: 68px;
 }
 
+.beta{
+    position: absolute;
+    bottom: 6px;
+    right: 10px;
+    z-index: 1;
+}
+
+.beta h5{
+    margin: 0px;
+    font-size: 30px;
+    color: #232323;
+}
+
 .btnBox {
     position: absolute;
     top: 50%;

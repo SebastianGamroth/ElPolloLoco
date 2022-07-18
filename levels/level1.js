@@ -73,11 +73,15 @@ function initLevel() {
             new Coins(1285, 70)
         ],
         [
-            new Bottle(1200, 160),
-            new Bottle(1250, 160),
-            new Bottle(1300, 160),
-            new Bottle(1350, 160),
-            new Bottle(1400, 160)
+            new Bottle(1200, 160, 20),
+            new Bottle(1250, 160, 20),
+            new Bottle(1300, 160, 10),
+            new Bottle(1350, 160, 10),
+            new Bottle(1400, 160, 20),
+
+            new Bottle(2400, 400, 20),
+            new Bottle(2460, 400, 10),
+            new Bottle(2500, 410, 20),
         ],
         [
             new Sombrero(5033, 150),
@@ -106,8 +110,12 @@ function initLevel() {
         ],
         [
             new Barrel(1650, 365),
-            new Barrel(1650, 310),//980-310
-            new Barrel(1750, 365)
+            new Barrel(1650, 310),
+            new Barrel(1750, 365),
+            new Barrel(650, 365),
+            new Barrel(650, 310),
+            new Barrel(700, 365),
+            new Barrel(700, 310)
         ]
     );
 

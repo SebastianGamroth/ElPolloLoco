@@ -99,52 +99,6 @@ class Character extends MovableObject {
 
     animate() {
         this.startMoveTo();
-
-
-        // setInterval(() => {
-        //     this.walkingSound.pause();
-
-        //     if (this.world.keyboard.RIGHT && this.x < this.world.level.levelEndX) {
-        //         this.moveRight();
-        //         this.otherDirection = false;
-        //         this.walkingSound.play();
-        //     }
-
-        //     if (this.world.keyboard.LEFT && this.x > -610) {
-        //         this.moveLeft();
-        //         this.otherDirection = true;
-        //         this.walkingSound.play();
-        //     }
-
-        //     if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-        //         this.jump();
-        //     }
-
-        //     this.world.camera_x = -this.x + 100;
-        // }, 1000 / 60);
-
-
-        // setInterval(() => {
-        //     if (this.isDead()) {
-        //         this.speedY = 5;
-        //         this.playAnimation(this.ImagesDead);
-        //     } else if (this.isHurt()) {
-        //         this.playAnimation(this.ImagesHurt);
-        //         this.conter = 1;
-        //     } else if (this.isAboveGround()) {
-        //         this.playAnimation(this.ImagesJumping);
-        //         this.conter = 1;
-        //     } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-        //         this.playAnimation(this.ImagesWalking);
-        //         this.conter = 1;
-        //     } else if (this.world.keyboard.D) {
-        //         this.playAnimation(this.ImagesWait);
-        //         this.conter = 1;
-        //     } else {
-        //         this.noMovement();
-        //     }
-
-        // }, 50);
     }
 
     noMovement() {
