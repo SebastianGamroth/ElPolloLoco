@@ -116,6 +116,8 @@ function initLevel() {
         [
             new StoreFirst('./img/13_store/store.png', 1200),
             new StoreFirst('./img/13_store/store2.png', 800),
+            new StoreFirst('./img/13_store/store3.png', 3000),
+            new StoreFirst('./img/13_store/store3b.png', 3400),
             new StoreFirst('./img/13_store/nest.png', 4600)
         ],
         [
@@ -125,13 +127,19 @@ function initLevel() {
             new Store2Bar()
         ],
         [
+            new Store3Bar()
+        ],
+        [
             new Barrel(1650, 365),
             new Barrel(1650, 310),
             new Barrel(1750, 365),
             new Barrel(650, 365),
             new Barrel(645, 305),
             new Barrel(700, 360),
-            new Barrel(700, 310)
+            new Barrel(700, 310),
+            new Barrel(2800, 365),
+            new Barrel(2870, 365),
+            new Barrel(2870, 310)
         ],
         [
             new WoodenBox(700, 255),

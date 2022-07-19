@@ -28,6 +28,7 @@ class DrawableObject {
             this instanceof TreeTrunk ||
             this instanceof StoreFirstBar ||
             this instanceof Store2Bar ||
+            this instanceof Store3Bar ||
             this instanceof Barrel ||
             this instanceof ChikenBabys ||
             this instanceof WoodenBox) {

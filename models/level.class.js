@@ -31,6 +31,7 @@ class Level {
         storeFirst,
         storeFirstBar,
         store2Bar,
+        store3Bar,
         barrel,
         woodenBox) {
         this.enemies = enemies;
@@ -48,6 +49,7 @@ class Level {
         this.storeFirst = storeFirst;
         this.storeFirstBar = storeFirstBar;
         this.store2Bar = store2Bar;
+        this.store3Bar = store3Bar;
         this.barrel = barrel;
         this.woodenBox = woodenBox;
     };

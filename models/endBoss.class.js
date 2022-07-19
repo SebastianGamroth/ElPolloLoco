@@ -57,7 +57,7 @@ class EndBoss extends MovableObject {
         this.loadImages(this.ImagesAttack);
         this.loadImages(this.ImagesHurt);
         this.loadImages(this.ImagesDead);
-        this.x = 4650; //2400
+        this.x = 4650;
         this.animate();
     }
 
@@ -82,6 +82,8 @@ class EndBoss extends MovableObject {
         } else if (this.isHurtBoss()) {
             this.playAnimation(this.ImagesHurt);
         } else if (this.isBossAttack()) {
+            // this.x = 1;
+            this.moveLeft();
             this.playAnimation(this.ImagesAttack);
         } else {
             // this.playAnimation(this.ImagesWalk);

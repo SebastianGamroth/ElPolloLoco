@@ -215,7 +215,11 @@ class World {
 
     jumpToBarrel() {
 
-        if (this.character.isColliding(this.level.barrel[1])) {
+        if (this.level.barrel[9].isColliding(this.character)) {
+            this.character.valueY = 130;
+            // console.log('2')
+        }
+        else if (this.character.isColliding(this.level.barrel[1])) {
             this.character.valueY = 130;
             // console.log('1')
         }
@@ -240,6 +244,10 @@ class World {
             this.level.storeFirstBar[0].aboutStore();
         }
         else if (this.character.isColliding(this.level.store2Bar[0])) {
+            this.character.valueY = 55;
+            this.level.store2Bar[0].aboutStore2();
+        }
+        else if (this.character.isColliding(this.level.store3Bar[0])) {
             this.character.valueY = 55;
             this.level.store2Bar[0].aboutStore2();
         }
@@ -592,6 +600,7 @@ class World {
 
         this.addObjectsToMap(this.level.storeFirstBar);
         this.addObjectsToMap(this.level.store2Bar);
+        this.addObjectsToMap(this.level.store3Bar);
 
         this.ctx.translate(-this.camera_x, 0);
         // ---------- space of fixed objects ----------
@@ -632,7 +641,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
