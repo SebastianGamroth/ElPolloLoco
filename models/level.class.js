@@ -14,6 +14,7 @@ class Level {
     storeFirst;
     storeFirstBar;
     barrel;
+    woodenBox;
 
     levelEndX = 5070;
 
@@ -30,7 +31,8 @@ class Level {
         storeFirst,
         storeFirstBar,
         store2Bar,
-        barrel) {
+        barrel,
+        woodenBox) {
         this.enemies = enemies;
         this.enemieBoss = enemieBoss;
         this.clouds = clouds;
@@ -47,5 +49,6 @@ class Level {
         this.storeFirstBar = storeFirstBar;
         this.store2Bar = store2Bar;
         this.barrel = barrel;
+        this.woodenBox = woodenBox;
     };
 }

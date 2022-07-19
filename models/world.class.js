@@ -1,5 +1,8 @@
 class World {
 
+    audioCoins = new Audio(AUDIOS.COINS.AUDIO);
+    audioBottles = new Audio(AUDIOS.BOTTLES.AUDIO);
+
 
     // gameOverScreen = new GameOverScreen();
     character = new Character();
@@ -41,9 +44,7 @@ class World {
             this.chickenCollisionCharacter();
             this.endBossCollisionCharacter();
             // this.chickenBabyCollisionCharacter();
-            this.charackterPickUpCoins();
-            this.charackterPickUpBottle();
-            this.charackterPickUpSombrero();
+
             this.characterThrowsBottle();
             this.bottleHitsEndBoss();
             this.chickenEndAndRemove();
@@ -67,6 +68,9 @@ class World {
         }, 200);
 
         setInterval(() => {
+            this.charackterPickUpCoins();
+            this.charackterPickUpBottle();
+            this.charackterPickUpSombrero();
             // this.jumpToStore1Bare();
             this.jumpToBarrel();
             this.backgroundPosition();
@@ -221,6 +225,14 @@ class World {
         }
         else if (this.character.isColliding(this.level.barrel[0])) {
             this.character.valueY = 180;
+            // console.log('0')
+        }
+        else if (this.character.isColliding(this.level.woodenBox[0])) {
+            this.character.valueY = 90;
+            // console.log('0')
+        }
+        else if (this.character.isColliding(this.level.woodenBox[1])) {
+            this.character.valueY = 90;
             // console.log('0')
         }
         else if (this.character.isColliding(this.level.storeFirstBar[0])) {
@@ -432,7 +444,9 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (enemy.isColliding(this.character)) {
 
+                this.character.characterPunch();
                 if (!this.characterIsSave) {
+
                     this.character.hit();
                     this.statusBarHealth.setPercentage(this.character.energy);
                 } else {
@@ -475,10 +489,16 @@ class World {
     charackterPickUpCoins() {
         this.level.coins.forEach((enemy, index) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hitCoin();
-                this.statusBarCoins.setPercentage(this.character.coin);
+                if (this.character.coin > 0) {
 
-                this.level.coins.splice(index, 1);
+                    this.audioCoins.pause();
+                    this.audioCoins.currentTime = 0;
+                    this.audioCoins.play();
+                    this.character.hitCoin();
+                    this.statusBarCoins.setPercentage(this.character.coin);
+
+                    this.level.coins.splice(index, 1);
+                }
             }
         });
     }
@@ -487,10 +507,15 @@ class World {
     charackterPickUpBottle() {
         this.level.bottle.forEach((enemy, index) => {
             if (this.character.isColliding(enemy)) {
-                this.character.hitBottle();
-                this.statusBarBottle.setPercentage(this.character.bottle);
+                if (this.character.bottle > 0) {
+                    this.audioBottles.pause();
+                    this.audioBottles.currentTime = 0;
+                    this.audioBottles.play();
+                    this.character.hitBottle();
+                    this.statusBarBottle.setPercentage(this.character.bottle);
 
-                this.level.bottle.splice(index, 1);
+                    this.level.bottle.splice(index, 1);
+                }
             }
         });
     }
@@ -552,6 +577,7 @@ class World {
         this.addObjectsToMap(this.level.treeTrunk);
         this.addObjectsToMap(this.level.storeFirst);
         this.addObjectsToMap(this.level.barrel);
+        this.addObjectsToMap(this.level.woodenBox);
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.enemies);

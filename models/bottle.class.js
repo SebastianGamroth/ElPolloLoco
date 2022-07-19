@@ -11,6 +11,7 @@ class Bottle extends DrawableObject {
     ];
 
     percentage = 20;
+    // bottlePickUpSound = new Audio('./audio/bottlePickUp.mp3');
 
     constructor(x, y, percentage) {
         super();
@@ -22,6 +23,7 @@ class Bottle extends DrawableObject {
         this.height = 50;
 
         this.setPercentage(percentage);
+        // this.animate();
     };
 
     setPercentage(percentage) {
@@ -37,4 +39,16 @@ class Bottle extends DrawableObject {
             return 1;
         }
     };
+
+    // animate() {
+
+
+    //     setInterval(() => {
+    //         if (this.bottleSound()) {
+    //             this.bottlePickUpSound.play();
+    //         } else {
+    //             this.bottlePickUpSound.pause();
+    //         }
+    //     }, 200);
+    // }
 }

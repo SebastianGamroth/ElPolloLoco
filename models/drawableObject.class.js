@@ -29,7 +29,8 @@ class DrawableObject {
             this instanceof StoreFirstBar ||
             this instanceof Store2Bar ||
             this instanceof Barrel ||
-            this instanceof ChikenBabys) {
+            this instanceof ChikenBabys ||
+            this instanceof WoodenBox) {
             ctx.beginPath();
             ctx.lineWidth = '1';
             ctx.strokeStyle = 'blue';

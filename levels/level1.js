@@ -70,7 +70,13 @@ function initLevel() {
             new Coins(1420, 70),
             new Coins(1450, 70),
             new Coins(1250, 70),
-            new Coins(1285, 70)
+            new Coins(1285, 70),
+            new Coins(930, 125),
+            new Coins(900, 125),
+            new Coins(870, 125),
+            new Coins(1045, 125),
+            new Coins(1075, 125),
+            new Coins(1105, 125)
         ],
         [
             new Bottle(1200, 160, 20),
@@ -113,9 +119,13 @@ function initLevel() {
             new Barrel(1650, 310),
             new Barrel(1750, 365),
             new Barrel(650, 365),
-            new Barrel(650, 310),
-            new Barrel(700, 365),
+            new Barrel(645, 305),
+            new Barrel(700, 360),
             new Barrel(700, 310)
+        ],
+        [
+            new WoodenBox(700, 255),
+            new WoodenBox(645, 250)
         ]
     );
 

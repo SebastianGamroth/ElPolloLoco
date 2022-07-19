@@ -1,4 +1,7 @@
 class Character extends MovableObject {
+
+    audioCharacterJump = new Audio(AUDIOS.CHARACTER_JUMP.AUDIO);
+
     height = 200;
     width = 102;
     y = 55;
@@ -81,6 +84,9 @@ class Character extends MovableObject {
     world;
     walkingSound = new Audio('./audio/running.mp3');
     punchSound = new Audio('./audio/punch.mp3');
+    jumpSound = new Audio('./audio/characterJump.mp3');
+    // bottlePickUpSound = new Audio('./audio/bottlePickUp.mp3');
+    // coinPickUpSound = new Audio('./audio/coin.mp3');
 
     x = 2200;
     constructor() {
@@ -146,6 +152,9 @@ class Character extends MovableObject {
 
         if (this.world.keyboard.SPACE && !this.isAboveGround()) {
             this.jump();
+            this.jumpSound.pause();
+            this.jumpSound.currentTime = 0;
+            this.jumpSound.play();
         }
 
 
@@ -170,6 +179,10 @@ class Character extends MovableObject {
 
     moveToPlayAnimate() {
         this.punchSound.pause();
+        // this.jumpSound.pause();
+
+        // this.bottlePickUpSound.pause();
+        // this.coinPickUpSound.pause();
 
         if (this.isDead()) {
             this.speedY = 5;
@@ -177,7 +190,7 @@ class Character extends MovableObject {
 
         } else if (this.isHurt()) {
 
-            this.characterPunch();
+            // this.characterPunch();
 
             this.punchSound.play();
             this.playAnimation(this.ImagesHurt);
@@ -191,6 +204,7 @@ class Character extends MovableObject {
             this.playAnimation(this.ImagesJumping);
             this.conter = 1;
 
+
         } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.playAnimation(this.ImagesWalking);
             this.conter = 1;
@@ -202,6 +216,16 @@ class Character extends MovableObject {
         } else {
             this.noMovement();
         }
+
+
+
+        // if (this.bottleSound()) {
+        //     this.bottlePickUpSound.currentTime = 0;
+        //     this.bottlePickUpSound.play();
+        // }
+        // if (this.coinSound()) {
+        //     this.coinPickUpSound.play();
+        // }
     }
 
 }

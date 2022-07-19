@@ -12,7 +12,7 @@ class MovableObject extends DrawableObject {
     energyChiken = 20;
     energyBoss = 100;
     energyThrow = 60;
-    coin = 0;
+    coin = 100;
     bottle = 100;
     lastHit = 0;
     lastHitBoss = 0;
@@ -166,7 +166,7 @@ class MovableObject extends DrawableObject {
 
     energyBlock = 100;
 
-    hit() {
+    hit() { console.log('hit')
         this.energy -= 20;
         if (this.energy < 0) {
             this.energy = 0;
@@ -265,10 +265,17 @@ class MovableObject extends DrawableObject {
 
 
     hitCoin() {
-        this.coin += 20;
+        this.coin -= 20;
+        // this.lastTimeCoin = new Date().getTime();
     }
     hitBottle() {
         this.bottle -= 20;
+        this.lastTimeBottle = new Date().getTime();
+    }
+    bottleSound() {
+        let timepassed = new Date().getTime() - this.lastTimeBottle;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.2;
     }
     hitSombrero() {
         if (this.energyBlock < 100) {
