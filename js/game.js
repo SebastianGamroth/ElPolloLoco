@@ -23,6 +23,25 @@ function startFullscreen() {
     canvas.requestFullscreen();
 }
 
+function privacyLink(nr) {
+    document.getElementById('privacyPage').classList.remove('d-none');
+    if (nr == 1) {
+        document.getElementById('copyright').classList.remove('d-none');
+    }
+    if (nr == 2) {
+        document.getElementById('imprint').classList.remove('d-none');
+    }
+    if (nr == 3) {
+        document.getElementById('privacy').classList.remove('d-none');
+    }
+}
+
+function pageReturn() {
+    document.getElementById('privacyPage').classList.add('d-none');
+    document.getElementById('copyright').classList.add('d-none');
+    document.getElementById('imprint').classList.add('d-none');
+    document.getElementById('privacy').classList.add('d-none');
+}
 
 window.addEventListener('keydown', (event) => {
     if (event.code == "ArrowRight" || event.code == "KeyD") {

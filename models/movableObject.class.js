@@ -18,6 +18,7 @@ class MovableObject extends DrawableObject {
     lastHitBoss = 0;
     damage = 100;
 
+
     applyGravity(valueX) {
         if (valueX == 'undefined') { valueX = 0 }
 
@@ -35,7 +36,7 @@ class MovableObject extends DrawableObject {
     isAboveGround() {
         if (this instanceof ThrowableObject ||
             this instanceof ChikenBabys ||
-            // this instanceof Chiken ||
+            this instanceof EndBoss ||
             this instanceof EndBoss) {
             return true;
         } else if (this instanceof Sombrero) {
@@ -46,12 +47,7 @@ class MovableObject extends DrawableObject {
         else if (this instanceof Character) {
             return this.y < this.valueY;
         }
-        // else {
-        //     // console.log(this.valueY)
-        //     return this.y < this.valueY;
-        // }
     };
-
 
 
     gravitySombrero() {
@@ -84,9 +80,6 @@ class MovableObject extends DrawableObject {
     };
 
 
-
-
-
     isColliding(mo) {
 
         // console.log(`
@@ -109,10 +102,14 @@ class MovableObject extends DrawableObject {
     lastFly = 0;
     jumpHeight = 10;
     flyFast = 0;
+
+
     jump() {
         // this.acceleration = 1;
         this.speedY = this.jumpHeight;
     }
+
+
     randomBounce() {
         this.acceleration = 1.1 + Math.random() * 6;
         if (Math.random() < 0.02 && !this.isAboveGround()) {
@@ -121,6 +118,8 @@ class MovableObject extends DrawableObject {
             this.lastFly = new Date().getTime();
         }
     }
+
+
     flyChickenLeft() {
         let stopPunchInterval = setInterval(() => {
             if (this.flyFast < 10) {
@@ -138,6 +137,8 @@ class MovableObject extends DrawableObject {
     checkFly() {
         this.lastFly = new Date().getTime();
     }
+
+
     chickenFly() {
         let timepassed = new Date().getTime() - this.lastFly;
         timepassed = timepassed / 1000;
@@ -147,18 +148,25 @@ class MovableObject extends DrawableObject {
 
 
     chickenBabyNowBiggerBoolean = false;
+
     isChickenBabyNowBigger() {
         this.chickenBabyNowBiggerBoolean = true;
     }
+
+
     chickenBabyNowBigger() {
         return this.chickenBabyNowBiggerBoolean;
     }
+
+
     hitChiken() {
         this.energyChiken -= 20;
         if (this.energyChiken < 0) {
             this.energyChiken = 0;
         }
     }
+
+    
     chikenDead() {
         return this.energyChiken == 0;
     }
@@ -174,79 +182,103 @@ class MovableObject extends DrawableObject {
             this.lastHit = new Date().getTime();
         }
     }
+
+
     hitIsSave() {
         this.energyBlock -= 20;
         this.lastHit = new Date().getTime();
     }
+
+
     damageEnemy() {
         this.damage -= 20;
     }
+
+
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit;
         timepassed = timepassed / 1000;
         return timepassed < 0.4;
     }
+
+
     isDead() {
         return this.energy == 0;
     }
 
+
     lastBlock;
+
     isCharacterBlock() {
         if (this.energyBlock > 0) {
 
             this.lastBlock = new Date().getTime();
         }
     }
+
+
     characterBlock() {
         let timepassed = new Date().getTime() - this.lastBlock;
         timepassed = timepassed / 1000;
         return timepassed < 0.4;
     }
 
+
     storeBar = false;
+
     aboutStore() {
         this.storeBar = true;
     }
+
+
     underStore() {
         this.storeBar = false;
     }
+
+
     isOrNotAboutStore() {
         return this.storeBar;
     }
 
+
     storeBar2 = false;
+
     aboutStore2() {
         this.storeBar2 = true;
     }
+
+
     underStore2() {
         this.storeBar2 = false;
     }
+
+
     isOrNotAboutStore2() {
         return this.storeBar2;
     }
 
 
-
-    // bottleSplash = false;
     lastHitBottle;
+
     hitBottleSplash() {
         this.lastHitBottle = new Date().getTime();
-        // this.bottleSplash = true;
     }
+
+
     isBottleSplash() {
         let timepassed = new Date().getTime() - this.lastHitBottle;
         timepassed = timepassed / 1000;
         return timepassed < 0.4;
-
-        // return this.bottleSplash;
     }
-
 
 
     lastHitFrog;
+
     frogCatch() {
         this.lastHitFrog = new Date().getTime();
     }
+
+
     frogCatchChicken() {
         let timepassed = new Date().getTime() - this.lastHitFrog;
         timepassed = timepassed / 1000;
@@ -255,69 +287,92 @@ class MovableObject extends DrawableObject {
 
 
     chickenBaby = false;
+
     ischikenBabyDead() {
         this.chickenBaby = true;
     }
+
+
     chikenBabyDead() {
         return this.chickenBaby;
     }
 
 
-
     hitCoin() {
         this.coin -= 20;
-        // this.lastTimeCoin = new Date().getTime();
     }
+
+
     hitBottle() {
         this.bottle -= 20;
         this.lastTimeBottle = new Date().getTime();
     }
+
+
     bottleSound() {
         let timepassed = new Date().getTime() - this.lastTimeBottle;
         timepassed = timepassed / 1000;
         return timepassed < 0.2;
     }
+
+
     hitSombrero() {
         if (this.energyBlock < 100) {
             this.energyBlock += 20;
         }
     }
+
+
     fillEnergyThrow() {
         this.energyThrow += 20;
     }
 
 
     bossAttack = false;
+
     hitBoss() {
         this.energyBoss -= 20;
         this.lastHitBoss = new Date().getTime();
     }
+
+
     isHurtBoss() {
         let timepassed = new Date().getTime() - this.lastHitBoss;
         timepassed = timepassed / 1000;
         return timepassed < 0.8;
     }
+
+
     isBossAttackTrue() {
         this.bossAttack = true;
     }
+
+
     isBossAttackFalse() {
         this.bossAttack = false;
     }
+
+
     isBossAttack() {
         return this.bossAttack == 1;
     }
+
+
     isBossDead() {
         return this.energyBoss == 0;
     }
 
 
-
     soundFrogEyes() {
         return this.soundFrogEyesBoolean;
     }
+
+
     soundFrogEat() {
         return this.soundFrogEatBoolean;
     }
+
+
     soundChicken() {
         return this.soundChickenBoolean;
     }
@@ -330,13 +385,16 @@ class MovableObject extends DrawableObject {
         this.currentImage++;
     }
 
+
     moveRight() {
         this.x += this.speed;
     }
 
+
     moveLeft() {
         this.x -= this.speed;
     }
+    
 
     jump() {
         this.speedY = 20;

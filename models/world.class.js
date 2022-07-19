@@ -4,7 +4,6 @@ class World {
     audioBottles = new Audio(AUDIOS.BOTTLES.AUDIO);
 
 
-    // gameOverScreen = new GameOverScreen();
     character = new Character();
     level = initLevel();
     canvas;
@@ -18,9 +17,9 @@ class World {
     statusBarCoins = new StatusBarCoins();
     statusBarBoss = new StatusBarBoss();
     throwableObject = [];
-    // newCloud = [];
     gameOverScreenArray = [];
     characterIsSave = false;
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -29,8 +28,6 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-
-        // initLevel();
     };
 
 
@@ -43,7 +40,7 @@ class World {
         setInterval(() => {
             this.chickenCollisionCharacter();
             this.endBossCollisionCharacter();
-            // this.chickenBabyCollisionCharacter();
+// this.chickenBabyCollisionCharacter();
 
             this.characterThrowsBottle();
             this.bottleHitsEndBoss();
@@ -59,10 +56,10 @@ class World {
             this.characterBlockPunch();
             this.createNewSombrero();
             this.frogCatchesChicken();
-            // this.jumpToTreeTrunk();
+// this.jumpToTreeTrunk();
             this.soundColision();
 
-            // this.hickenFly()
+// this.hickenFly()
 
             this.gameOver();
         }, 200);
@@ -71,7 +68,7 @@ class World {
             this.charackterPickUpCoins();
             this.charackterPickUpBottle();
             this.charackterPickUpSombrero();
-            // this.jumpToStore1Bare();
+// this.jumpToStore1Bare();
             this.jumpToBarrel();
             this.backgroundPosition();
 
@@ -87,6 +84,8 @@ class World {
         this.characterStopAnimate();
         this.gameOverScreen();
     }
+
+
     cloudsStopAnimate() {
         this.level.clouds.forEach((cloud) => {
             if (cloud instanceof Cloud) {
@@ -94,12 +93,18 @@ class World {
             }
         });
     }
+
+
     endBossStopAnimate() {
         this.level.enemieBoss[0].stopAnimate();
     }
+
+
     characterStopAnimate() {
         this.character.stopAnimate();
     }
+
+
     enemiesStopAnimate() {
         this.level.enemies.forEach((enemy) => {
             if (enemy instanceof Chiken) {
@@ -107,6 +112,7 @@ class World {
             }
         });
     }
+
 
     onceOver = true;
 
@@ -116,7 +122,6 @@ class World {
             if (this.onceOver == true) {
                 this.onceOver = false;
 
-                // this.characterStopAnimate();
                 this.stopMove();
                 this.onceOver = setTimeout(this.stopMove.bind(this), 100);
                 this.onceOver = setTimeout(this.startScreen.bind(this), 2000);
@@ -129,6 +134,7 @@ class World {
         let screen = new GameOverScreen();
         this.gameOverScreenArray.push(screen);
     }
+
 
     startScreen() {
         document.getElementById('start').classList.remove('d-none');
@@ -148,11 +154,11 @@ class World {
         this.level
         this.level.clouds.forEach((enemy, index) => {
             if (enemy.x < -1200) {
-                // enemy.splice(index, 1);
                 this.level.clouds.splice(index, 1);
             }
         });
     }
+
 
     backgroundPosition() {
         if (this.keyboard.LEFT && this.character.x > 470) {
@@ -173,12 +179,13 @@ class World {
         }
     }
 
+
     createNewChicken() {
         if (this.level.enemies.length <= 11) {
-
             this.level.enemies.push(new Chiken(4600));
         }
     }
+
 
     createNewSombrero() {
         if (this.level.sombrero.length < 7) {
@@ -193,51 +200,24 @@ class World {
     }
 
 
-    // hickenFly() {
-    //     this.level.enemies.forEach((enemy) => {
-    //         if (enemy.y > 200) {
-    //             console.log(enemy.y)
-    //             enemy.checkFly();
-    //         }
-    //     });
-    // }
-
-    // jumpToStore1Bare() {
-    //     if (this.character.isColliding(this.level.storeFirstBar[0])) {
-    //         this.character.valueY = 90;
-    //         console.log('stre')
-    //     }
-    //     else {
-    //         this.character.valueY = 235;
-    //         this.character.isNotOnTreeTrunk();
-    //     }
-    // }
-
     jumpToBarrel() {
-
         if (this.level.barrel[9].isColliding(this.character)) {
             this.character.valueY = 130;
-            // console.log('2')
         }
         else if (this.character.isColliding(this.level.barrel[1])) {
             this.character.valueY = 130;
-            // console.log('1')
         }
         else if (this.level.barrel[2].isColliding(this.character)) {
             this.character.valueY = 180;
-            // console.log('2')
         }
         else if (this.character.isColliding(this.level.barrel[0])) {
             this.character.valueY = 180;
-            // console.log('0')
         }
         else if (this.character.isColliding(this.level.woodenBox[0])) {
             this.character.valueY = 90;
-            // console.log('0')
         }
         else if (this.character.isColliding(this.level.woodenBox[1])) {
             this.character.valueY = 90;
-            // console.log('0')
         }
         else if (this.character.isColliding(this.level.storeFirstBar[0])) {
             this.character.valueY = 55;
@@ -256,19 +236,6 @@ class World {
             this.level.storeFirstBar[0].underStore();
             this.level.store2Bar[0].underStore2();
         }
-
-
-
-        // this.level.barrel.forEach((element) => {
-
-        //     if (element.isColliding(this.character)) {
-
-        //         this.character.valueY = 180;
-        //     }
-        //     else {
-        //         this.character.valueY = 235;
-        //     }
-        // });
     }
 
 
@@ -433,8 +400,6 @@ class World {
     }
 
 
-
-
     bottleSplash() {
         this.throwableObject.forEach((bottle, id) => {
             if (bottle.y > 350) {
@@ -465,6 +430,7 @@ class World {
         });
     }
 
+
     endBossCollisionCharacter() {
         let boss = this.level.enemieBoss[0];
 
@@ -478,7 +444,6 @@ class World {
                 this.StatusBarBlockEnergy.setPercentage(this.character.energyBlock);
             }
         }
-
     }
 
 
@@ -487,7 +452,6 @@ class World {
             this.character.isCharacterBlock();
             this.characterIsSave = true;
 
-            // this.enemiesStopAnimate();
         } else {
             this.characterIsSave = false;
         }
@@ -528,6 +492,7 @@ class World {
         });
     }
 
+
     charackterPickUpSombrero() {
         this.level.sombrero.forEach((enemy, index) => {
             if (this.character.isColliding(enemy)) {
@@ -555,21 +520,15 @@ class World {
             if (this.character.x + 400 > enemy.x &&
                 this.character.x - 300 < enemy.x) {
                 enemy.soundChickenBoolean = true;
-                // console.log('true')
             } else {
                 enemy.soundChickenBoolean = false;
-                // console.log('fale')
             }
         });
     }
 
 
-    // start = false;
-
     draw() {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-        // if (this.keyboard.startGame) {
+        // this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
@@ -579,8 +538,6 @@ class World {
         this.addObjectsToMap(this.level.backgroundObjectsLayer_2);
         this.addObjectsToMap(this.level.backgroundObjects);
 
-
-        // this.addObjectsToMap(this.newCloud);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.treeTrunk);
         this.addObjectsToMap(this.level.storeFirst);
@@ -616,24 +573,19 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
 
-        // let self = this;
-        // requestAnimationFrame(function () {
-        //     self.draw();
-        // });
-        // };
-
         let self = this;
         requestAnimationFrame(function () {
             self.draw();
         });
-
     };
+
 
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o)
         });
     };
+
 
     addToMap(mo) {
         if (mo.otherDirection) {
@@ -648,12 +600,14 @@ class World {
         }
     };
 
+
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
     }
+    
 
     flipImageBack(mo) {
         mo.x = mo.x * -1;

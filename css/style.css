@@ -81,7 +81,7 @@ canvas {
 }
 
 .howToCenter div:first-child {
-    margin-right: 44px;
+    margin-right: 18px;
 }
 
 .flex {
@@ -117,7 +117,7 @@ h3 {
 }
 
 .spaceBox {
-    margin-left: 30px;
+    margin-left: 8px;
     margin-right: 6px;
 }
 
@@ -127,17 +127,18 @@ h3 {
     width: 68px;
 }
 
-.beta{
+.beta {
     position: absolute;
     bottom: 6px;
     right: 10px;
     z-index: 1;
 }
 
-.beta h5{
+.beta h5 {
     margin: 0px;
     font-size: 30px;
     color: #232323;
+    cursor: default;
 }
 
 .btnBox {
@@ -189,6 +190,51 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.privacyLink {
+    position: absolute;
+    bottom: 6px;
+    left: 10px;
+    z-index: 1;
+}
+
+.privacyLink a {
+    color: black;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 8px;
+}
+
+.privacyPage {
+    z-index: 2;
+    /* padding: 8px; */
+    background-color: #fffffff0;
+    overflow-y: auto;
+    height: 100vh;
+    width: 100%;
+}
+
+.btnReturn {
+    position: absolute;
+    top: 8px;
+    right: 26px;
+    width: 40px;
+    height: 40px;
+    background-color: #9ac1d6;
+    border: 1px solid #5e7e90;
+    border-radius: 50px;
+}
+
+.copyright,
+.imprint,
+.privacy {
+    z-index: 2;
+    /* display: none; */
+}
+
+.privacyPage section {
+    margin: 8px;
 }
 
 .mobileContainer {
