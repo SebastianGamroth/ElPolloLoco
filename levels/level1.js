@@ -4,9 +4,18 @@ function initLevel() {
 
     return new Level(
         [
+            new Chiken(4600),
             new Chiken(4100),
+            new Chiken(3700),
             new Chiken(3500),
-            new Chiken(3000)
+            new Chiken(3200),
+            new Chiken(2800),
+            new Chiken(2600),
+            new Chiken(2000),
+            new Chiken(1800),
+            new Chiken(1500),
+            new Chiken(1100),
+            new Chiken(800),
         ],
         [
             new EndBoss()
@@ -107,7 +116,7 @@ function initLevel() {
         [
             new StoreFirst('./img/13_store/store.png', 1200),
             new StoreFirst('./img/13_store/store2.png', 800),
-            new StoreFirst('./img/13_store/nest.png', 3400)
+            new StoreFirst('./img/13_store/nest.png', 4600)
         ],
         [
             new StoreFirstBar()

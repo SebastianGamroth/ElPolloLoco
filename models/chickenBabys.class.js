@@ -26,14 +26,15 @@ class ChikenBabys extends MovableObject {
         './img/3_enemies_chicken/chicken_small/2_dead/dead_6.png'
     ];
 
-    constructor() {
+    constructor(x, y) {
         super().loadImage(this.ImagesBaby[0]);
         this.loadImages(this.ImagesBaby);
         this.loadImages(this.ImagesDead);
 
         // this.x = 400 + Math.random() * 500; // 200-700
         // this.speed = 0.4 + Math.random() * 0.5;
-
+        this.x = x;
+        this.y = y;
         this.animate();
     };
 
@@ -47,7 +48,7 @@ class ChikenBabys extends MovableObject {
         //     this.x += 8;
         // }, 25);
 
-        
+
         setInterval(() => {
             if (this.chikenBabyDead()) {
                 this.playAnimation(this.ImagesDead);

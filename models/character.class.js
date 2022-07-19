@@ -190,7 +190,7 @@ class Character extends MovableObject {
 
         } else if (this.isHurt()) {
 
-            // this.characterPunch();
+            this.characterPunch();
 
             this.punchSound.play();
             this.playAnimation(this.ImagesHurt);

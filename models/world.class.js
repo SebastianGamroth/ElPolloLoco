@@ -174,9 +174,9 @@ class World {
     }
 
     createNewChicken() {
-        if (this.level.enemies.length <= 3) {
+        if (this.level.enemies.length <= 11) {
 
-            this.level.enemies.push(new Chiken(3500));
+            this.level.enemies.push(new Chiken(4600));
         }
     }
 
@@ -324,7 +324,7 @@ class World {
 
             if (boss.energyBoss > 0 && this.character.energy > 0) {
                 if (this.chickenBabys.length < 1) {
-                    let chicken = new ChikenBabys();
+                    let chicken = new ChikenBabys(boss.x+5, boss.y +20);
                     this.chickenBabys.push(chicken);
                 }
             }

@@ -166,7 +166,7 @@ class MovableObject extends DrawableObject {
 
     energyBlock = 100;
 
-    hit() { console.log('hit')
+    hit() {
         this.energy -= 20;
         if (this.energy < 0) {
             this.energy = 0;
