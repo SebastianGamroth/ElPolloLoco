@@ -106,7 +106,8 @@ function initLevel() {
         ],
         [
             new StoreFirst('./img/13_store/store.png', 1200),
-            new StoreFirst('./img/13_store/store2.png', 800)
+            new StoreFirst('./img/13_store/store2.png', 800),
+            new StoreFirst('./img/13_store/nest.png', 3400)
         ],
         [
             new StoreFirstBar()
