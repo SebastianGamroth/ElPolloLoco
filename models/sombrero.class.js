@@ -64,7 +64,7 @@ class Sombrero extends MovableObject {
         // this.speed = 5 + Math.random() * 0.5;
         // this.acceleration = 4.5;
 
-        this.gravitySombrero();
+        // this.gravitySombrero();
         // this.randomBounce();
 
         this.playAnimation(this.Images);
