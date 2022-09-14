@@ -40,7 +40,7 @@ class World {
         setInterval(() => {
             this.chickenCollisionCharacter();
             this.endBossCollisionCharacter();
-// this.chickenBabyCollisionCharacter();
+            // this.chickenBabyCollisionCharacter();
 
             this.characterThrowsBottle();
             this.bottleHitsEndBoss();
@@ -56,10 +56,10 @@ class World {
             this.characterBlockPunch();
             this.createNewSombrero();
             this.frogCatchesChicken();
-// this.jumpToTreeTrunk();
+            // this.jumpToTreeTrunk();
             this.soundColision();
 
-// this.hickenFly()
+            // this.hickenFly()
 
             this.gameOver();
         }, 200);
@@ -68,7 +68,7 @@ class World {
             this.charackterPickUpCoins();
             this.charackterPickUpBottle();
             this.charackterPickUpSombrero();
-// this.jumpToStore1Bare();
+            // this.jumpToStore1Bare();
             this.jumpToBarrel();
             this.backgroundPosition();
 
@@ -299,7 +299,7 @@ class World {
 
             if (boss.energyBoss > 0 && this.character.energy > 0) {
                 if (this.chickenBabys.length < 1) {
-                    let chicken = new ChikenBabys(boss.x+5, boss.y +20);
+                    let chicken = new ChikenBabys(boss.x + 5, boss.y + 20);
                     this.chickenBabys.push(chicken);
                 }
             }
@@ -414,19 +414,44 @@ class World {
 
 
     chickenCollisionCharacter() {
-        this.level.enemies.forEach((enemy) => {
+
+        this.level.enemies.forEach((enemy, id) => {
             if (enemy.isColliding(this.character)) {
 
                 this.character.characterPunch();
+                this.level.enemies[id].addChichenPunch();
+
                 if (!this.characterIsSave) {
 
-                    this.character.hit();
-                    this.statusBarHealth.setPercentage(this.character.energy);
+                        console.log('hit')
+                        this.character.hit();
+                        this.statusBarHealth.setPercentage(this.character.energy);
+
+
                 } else {
                     this.character.hitIsSave();
                     this.StatusBarBlockEnergy.setPercentage(this.character.energyBlock);
                 }
             }
+
+            // if (enemy.isColliding(this.character) && enemy.energyChiken > 0 && !this.character.isAboveGround()) {
+            //     this.character.characterPunch();
+            //     if (!this.characterIsSave) {
+
+            //         this.character.hit();
+            //         this.statusBarHealth.setPercentage(this.character.energy);
+            //     } else {
+            //         this.character.hitIsSave();
+            //         this.StatusBarBlockEnergy.setPercentage(this.character.energyBlock);
+            //     }
+            // }
+            // if (enemy.isCollidingOnChicken(this.character) && this.character.isAboveGround()) {
+            //     enemy.hitChiken();
+            //     enemy.stopAnimate();
+
+            //     this.lastTime = new Date().getTime();
+            // }
+
         });
     }
 
@@ -593,7 +618,7 @@ class World {
         }
 
         mo.draw(this.ctx);
-        // mo.drawFrame(this.ctx);
+        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);
@@ -607,7 +632,7 @@ class World {
         this.ctx.scale(-1, 1);
         mo.x = mo.x * -1;
     }
-    
+
 
     flipImageBack(mo) {
         mo.x = mo.x * -1;

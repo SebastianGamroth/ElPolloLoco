@@ -26,7 +26,6 @@ class Frog extends MovableObject {
     ];
 
 
-
     frogEyesSound = new Audio('./audio/frogEyes.mp3');
     frogEatSound = new Audio('./audio/forgEat.mp3');
 

@@ -1,3 +1,3 @@
 # ElPolloLoco
 
-https://sebastiangamroth.github.io/ElPolloLoco/
+This is an example of ElPolloLoco.

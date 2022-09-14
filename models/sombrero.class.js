@@ -11,13 +11,6 @@ class Sombrero extends MovableObject {
         './img/10_Sombrero/1_sombrero_rotation_4.png'
     ];
 
-    ImagesTEST = [
-        './img/8_coin/coin_2.png',
-        './img/8_coin/coin_2.png',
-        './img/8_coin/coin_2.png',
-        './img/8_coin/coin_2.png'
-    ];
-
     constructor(x, y) {
         super().loadImage(this.Images[0]);
         // super();
@@ -31,8 +24,8 @@ class Sombrero extends MovableObject {
 
         this.y = 165;
         // this.x = 400 + Math.random() * 500; // 200-700
-        this.speed = 0.4 + Math.random() * 0.5;
-        this.applyGravity(10);
+        this.speed = 8 + Math.random() * 50;
+        this.applyGravity(30);
         this.animate();
     }
 
@@ -43,7 +36,7 @@ class Sombrero extends MovableObject {
 
 
     startMoveTo() {
-        this.moveToInterval = setInterval(this.moveTo.bind(this), 300);
+        this.moveToInterval = setInterval(this.moveTo.bind(this), 200);
     }
 
 
@@ -58,15 +51,17 @@ class Sombrero extends MovableObject {
 
 
     moveTo() {
- 
+        this.acceleration = 0.7;
+        
         // this.x -= 0.2;
-        // this.speedY = 10;
+        // this.speedY = 5;
         // this.speed = 5 + Math.random() * 0.5;
         // this.acceleration = 4.5;
 
         // this.gravitySombrero();
         // this.randomBounce();
 
+        this.moveLeft();
         this.playAnimation(this.Images);
     }
 

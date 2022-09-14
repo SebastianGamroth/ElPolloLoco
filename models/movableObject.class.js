@@ -80,6 +80,20 @@ class MovableObject extends DrawableObject {
     };
 
 
+ 
+    chichenStopPunch = 0;
+    addChichenPunch() {
+        this.chichenStopPunch = new Date().getTime();
+    }
+
+    chichenPunch() {
+        let timepassed = new Date().getTime() - this.chichenStopPunch;
+        timepassed = timepassed / 1000;
+        return timepassed < 0.8;
+    }
+
+
+
     isColliding(mo) {
 
         // console.log(`
@@ -95,6 +109,15 @@ class MovableObject extends DrawableObject {
             (this.y + this.offsetY) + (this.height - this.offsetH) > mo.y + mo.offsetY &&
             this.x + this.offsetX < (mo.x + mo.offsetX) + (mo.width - mo.offsetW) &&
             this.y + this.offsetY < (mo.y + mo.offsetY) + (mo.height - mo.offsetH);
+
+    }
+
+    isCollidingOnChicken(mo) {
+
+        return (this.x + this.offsetX) + (this.width - this.offsetW) > mo.x + mo.offsetX &&
+            (this.y + this.offsetY) + (this.height - this.offsetH) > mo.y + mo.offsetY &&
+            this.x + this.offsetX < (mo.x + mo.offsetX) + (mo.width - mo.offsetW) &&
+            this.y + this.offsetY > (mo.y + mo.offsetY) + (mo.height - mo.offsetH);
 
     }
 
@@ -166,7 +189,7 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    
+
     chikenDead() {
         return this.energyChiken == 0;
     }
@@ -394,7 +417,7 @@ class MovableObject extends DrawableObject {
     moveLeft() {
         this.x -= this.speed;
     }
-    
+
 
     jump() {
         this.speedY = 20;

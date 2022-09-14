@@ -11,7 +11,6 @@ class StatusBarBoss extends StatusBar {
     percentage = 100;
 
     constructor() {
-        // super().loadImage(this.Images[0]);
         super();
         this.loadImages(this.Images);
 

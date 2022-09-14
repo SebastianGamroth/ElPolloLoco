@@ -88,7 +88,7 @@ class Chiken extends MovableObject {
 
 
     moveTo() {
-        if (!this.chikenDead()) {
+        if (!this.chikenDead() && !this.chichenPunch()) {
             this.moveLeft();
             this.randomBounce();
         }
